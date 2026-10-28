@@ -1,0 +1,902 @@
+/**
+ * SikshaPath - Dashboard Styles
+ */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.welcome-text h1 {
+  font-size: 1.85rem;
+  letter-spacing: -0.02em;
+}
+
+.student-meta {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Stats Row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  font-size: 1.85rem;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.stat-value-topic {
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+/* Get started CTA */
+.get-started-card {
+  background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.get-started-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.get-started-icon {
+  font-size: 2.5rem;
+}
+
+.get-started-content h2 {
+  color: #FFFFFF;
+  font-size: 1.4rem;
+}
+
+.get-started-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.25rem;
+}
+
+.get-started-card .btn-primary {
+  background-color: #FFFFFF;
+  color: var(--primary);
+}
+
+.get-started-card .btn-primary:hover {
+  background-color: #F8FAFC;
+}
+
+/* Sections */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Topic Grid */
+.topic-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.topic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.topic-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.topic-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.topic-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.topic-card-body {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 8px;
+  background-color: #E2E8F0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F46E5 0%, #0D9488 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.progress-bar-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+  min-width: 32px;
+}
+
+.topic-card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+/* Recommendation Card */
+.recommendation-card {
+  background: #FFFFFF;
+  border: 2px solid #E0E7FF;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4F46E5, #0D9488);
+}
+
+.teacher-override-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: #FEF3C7;
+  color: #92400E;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+  border: 1px solid #FDE68A;
+}
+
+.recommendation-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recommendation-action {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.recommendation-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.recommendation-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.recommendation-reason {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+.recommendation-topic {
+  font-size: 0.82rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+/* Quiz history table */
+.quiz-history-table-wrapper {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.quiz-history-table th {
+  background-color: #F8FAFC;
+  padding: 0.85rem 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.quiz-history-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #F1F5F9;
+  color: var(--text-main);
+}
+
+.quiz-history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.score-pill {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.score-high {
+  background-color: var(--emerald-light);
+  color: var(--emerald);
+}
+
+.score-mid {
+  background-color: var(--amber-light);
+  color: var(--amber);
+}
+
+.score-low {
+  background-color: var(--rose-light);
+  color: var(--rose);
+}
+
+.quick-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.empty-state h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-text {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+
+/* Role Selection & Profile Page Styles */
+.role-selection-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.role-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.role-brand-badge {
+  background: var(--primary-light);
+  border: 1px solid #C7D2FE;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+.role-page-title {
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+}
+
+.role-page-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 620px;
+}
+
+.demo-notice-pill {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background-color: #F1F5F9;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+}
+
+.role-nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.role-nav-tab {
+  background: none;
+  border: none;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-nav-tab.active {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.demo-personas-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.persona-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.persona-select-card {
+  background: #FFFFFF;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.persona-select-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.persona-select-card.active-selection {
+  border-color: var(--primary);
+  background-color: #F8FAFC;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.select-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-avatar {
+  font-size: 2.2rem;
+}
+
+.card-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.card-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.card-kpi-bar {
+  display: flex;
+  justify-content: space-between;
+  background: #F8FAFC;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.kpi-score.low { color: var(--rose); }
+.kpi-score.mid { color: var(--amber); }
+.kpi-score.high { color: var(--emerald); }
+
+.teacher-entry-card {
+  background: linear-gradient(135deg, #0D9488 0%, #059669 100%);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease;
+}
+
+.teacher-entry-card:hover {
+  transform: translateY(-2px);
+}
+
+.teacher-entry-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.teacher-entry-icon {
+  font-size: 2.5rem;
+}
+
+.teacher-entry-content h3 {
+  color: #FFFFFF;
+  font-size: 1.35rem;
+}
+
+.teacher-entry-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.teacher-entry-card .btn-primary {
+  background: #FFFFFF;
+  color: var(--teal);
+}
+
+.teacher-entry-card .btn-primary:hover {
+  background: #F8FAFC;
+}
+
+/* Customize Profile Form */
+.customize-profile-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #FFFFFF;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.alert-success-banner {
+  background: var(--emerald-light);
+  color: var(--emerald);
+  border: 1px solid #A7F3D0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.profile-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+/* ============================================================ */
+/* DARK NEON CLAYMORPHISM FOR STUDENT DASHBOARD */
+/* ============================================================ */
+.theme-dark .welcome-text h1 {
+  color: #FFFFFF;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.theme-dark .student-meta {
+  color: #00F0FF;
+}
+
+.theme-dark .stat-card {
+  background: linear-gradient(145deg, #131A2E 0%, #0E1426 100%);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 22px;
+  box-shadow: 
+    8px 12px 24px rgba(0, 0, 0, 0.6),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.12),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+  color: #FFFFFF;
+}
+
+.theme-dark .stat-card:hover {
+  border-color: #00F0FF;
+  box-shadow: 
+    0 0 20px rgba(0, 240, 255, 0.25),
+    8px 12px 24px rgba(0, 0, 0, 0.7);
+  transform: translateY(-3px);
+}
+
+.theme-dark .stat-icon {
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.theme-dark .stat-value {
+  color: #FFFFFF;
+}
+
+.theme-dark .stat-label {
+  color: #94A3B8;
+}
+
+.theme-dark .section-title {
+  color: #FFFFFF;
+}
+
+.theme-dark .topic-card {
+  background: linear-gradient(145deg, #131A2E 0%, #0E1426 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  box-shadow: 
+    8px 12px 24px rgba(0, 0, 0, 0.6),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.theme-dark .topic-card:hover {
+  border-color: #00F0FF;
+  box-shadow: 
+    0 0 25px rgba(0, 240, 255, 0.2),
+    8px 12px 24px rgba(0, 0, 0, 0.7);
+  transform: translateY(-3px);
+}
+
+.theme-dark .topic-card-name {
+  color: #FFFFFF;
+}
+
+.theme-dark .progress-bar-container {
+  background: #080C18;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.theme-dark .progress-bar-fill {
+  background: linear-gradient(90deg, #0284C7 0%, #00F0FF 100%);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.theme-dark .progress-bar-label {
+  color: #00F0FF;
+}
+
+.theme-dark .topic-card-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+}
+
+.theme-dark .recommendation-card {
+  background: linear-gradient(145deg, #151D35 0%, #0D1426 100%);
+  border: 2px solid rgba(0, 240, 255, 0.4);
+  border-radius: 24px;
+  box-shadow: 
+    0 0 30px rgba(0, 240, 255, 0.15),
+    10px 14px 30px rgba(0, 0, 0, 0.7),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.14);
+}
+
+.theme-dark .recommendation-title {
+  color: #FFFFFF;
+}
+
+.theme-dark .recommendation-reason {
+  color: #CBD5E1;
+}
+
+.theme-dark .recommendation-topic {
+  color: #00F0FF;
+}
+
+.theme-dark .quiz-history-table-wrapper {
+  background: linear-gradient(145deg, #131A2E 0%, #0E1426 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.theme-dark .quiz-history-table th {
+  background-color: #0A0F1E;
+  color: #94A3B8;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .quiz-history-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+  color: #E2E8F0;
+}
+
+/* ============================================================ */
+/* MOBILE RESPONSIVE TWEAKS FOR STUDENT DASHBOARD (PHONES) */
+/* ============================================================ */
+@media (max-width: 768px) {
+  .dashboard-container {
+    gap: 1.5rem;
+  }
+
+  .welcome-text h1 {
+    font-size: 1.45rem;
+  }
+
+  .student-meta {
+    font-size: 0.82rem;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .stat-card {
+    padding: 0.85rem 0.65rem;
+    border-radius: 16px;
+    gap: 0.65rem;
+  }
+
+  .stat-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .stat-value-topic {
+    font-size: 0.85rem;
+    max-width: 90px;
+  }
+
+  .topic-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .topic-card {
+    padding: 1rem 0.85rem;
+    border-radius: 18px;
+  }
+
+  .topic-card-name {
+    font-size: 0.95rem;
+  }
+
+  .recommendation-card {
+    padding: 1.25rem 0.85rem;
+    border-radius: 18px;
+  }
+
+  .recommendation-action {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .recommendation-title {
+    font-size: 1.1rem;
+  }
+
+  .recommendation-reason {
+    font-size: 0.85rem;
+  }
+
+  .quiz-history-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 16px;
+  }
+
+  .quiz-history-table th, .quiz-history-table td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .quick-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .quick-links .btn {
+    width: 100%;
+  }
+
+  .role-page-title {
+    font-size: 1.6rem;
+  }
+
+  .role-nav-tabs {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .role-nav-tab {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .persona-selection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-entry-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem 0.85rem;
+    gap: 1rem;
+  }
+
+  .teacher-entry-card .btn {
+    width: 100%;
+  }
+
+  .customize-profile-card {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+}
