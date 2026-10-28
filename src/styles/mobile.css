@@ -9,30 +9,36 @@
 @media (max-width: 768px) {
   html, body {
     width: 100% !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
     overflow-x: hidden !important;
     position: relative !important;
     margin: 0 !important;
     padding: 0 !important;
     -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   * {
     box-sizing: border-box !important;
   }
 
+  #root,
   .app-layout {
     width: 100% !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
     overflow-x: hidden !important;
     position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .main-content {
     width: 100% !important;
-    max-width: 100vw !important;
-    padding: 0.75rem 0.65rem 2.5rem !important;
+    max-width: 100% !important;
+    padding: 0.5rem 0.5rem 2.5rem !important;
     overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
 
   /* Kill absolute ambient glow circles on phones to prevent horizontal stretching */
@@ -187,42 +193,53 @@
   /* ============================================================ */
   /* 4. LANDING PAGE ON PHONE */
   /* ============================================================ */
-  .landing-page {
+  .landing-page,
+  .landing-page.clay-dark-theme,
+  .landing-page.clay-light-theme {
     width: 100% !important;
     max-width: 100% !important;
-    gap: 2.25rem !important;
+    gap: 2rem !important;
     padding: 0.25rem 0 2rem !important;
     overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
 
   .hero-section {
-    padding: 1.25rem 0 0.75rem !important;
+    padding: 0.85rem 0 0.5rem !important;
     width: 100% !important;
   }
 
   .hero-container {
     width: 100% !important;
     max-width: 100% !important;
-    gap: 1.15rem !important;
+    gap: 1rem !important;
+    padding: 0 0.25rem !important;
   }
 
   .clay-pill-badge {
-    font-size: 0.74rem !important;
-    padding: 0.35rem 0.75rem !important;
+    font-size: 0.72rem !important;
+    padding: 0.38rem 0.75rem !important;
     max-width: 100% !important;
     text-align: center !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    line-height: 1.35 !important;
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 6.5vw, 2.4rem) !important;
-    line-height: 1.2 !important;
-    word-break: break-word !important;
+    font-size: clamp(1.65rem, 6vw, 2.25rem) !important;
+    line-height: 1.22 !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    letter-spacing: -0.02em !important;
   }
 
   .hero-subtitle {
-    font-size: 0.92rem !important;
+    font-size: 0.88rem !important;
     line-height: 1.5 !important;
     width: 100% !important;
+    padding: 0 !important;
   }
 
   .hero-cta-group {
@@ -233,37 +250,47 @@
   }
 
   .hero-cta-group .clay-btn,
+  .hero-cta-group a.clay-btn,
   .hero-cta-group .btn {
     width: 100% !important;
-    padding: 0.85rem 1rem !important;
+    min-height: 48px !important;
+    padding: 0.75rem 1rem !important;
     font-size: 0.95rem !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .hero-floating-chips {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
     width: 100% !important;
+    gap: 0.55rem !important;
     margin-top: 0.75rem !important;
   }
 
   .clay-stat-chip {
-    padding: 0.6rem 0.65rem !important;
-    gap: 0.4rem !important;
+    width: 100% !important;
+    padding: 0.65rem 0.85rem !important;
+    gap: 0.75rem !important;
     border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
 
   .chip-icon {
-    font-size: 1.25rem !important;
+    font-size: 1.35rem !important;
+    flex-shrink: 0 !important;
   }
 
   .clay-stat-chip strong {
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
   }
 
   .clay-stat-chip small {
-    font-size: 0.68rem !important;
+    font-size: 0.7rem !important;
   }
 
   /* Clay Cards on Phone */
@@ -303,17 +330,32 @@
   }
 
   .demo-persona-tabs {
-    display: flex !important;
-    flex-direction: column !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     width: 100% !important;
     gap: 0.35rem !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+    padding: 0.3rem !important;
+    border-radius: 14px !important;
+  }
+
+  .clay-light-theme .demo-persona-tabs {
+    background: #E2E8F0 !important;
   }
 
   .clay-tab {
     width: 100% !important;
-    font-size: 0.78rem !important;
-    padding: 0.45rem 0.5rem !important;
+    font-size: 0.74rem !important;
+    padding: 0.55rem 0.2rem !important;
     text-align: center !important;
+    border-radius: 10px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   .demo-widget-grid {
@@ -437,15 +479,24 @@
     overflow-x: auto !important;
     flex-wrap: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
-    padding-bottom: 0.25rem !important;
+    scrollbar-width: none !important;
+    padding-bottom: 0.35rem !important;
     gap: 0.35rem !important;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none !important;
   }
 
   .clay-filter-pill {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     font-size: 0.75rem !important;
-    padding: 0.35rem 0.65rem !important;
+    min-height: 36px !important;
+    padding: 0.4rem 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .catalog-cards-grid {
@@ -459,14 +510,30 @@
     width: 100% !important;
     padding: 1.15rem 0.85rem !important;
     border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .course-card-header {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+  }
+
+  .course-icon-glow {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.5rem !important;
+    flex-shrink: 0 !important;
   }
 
   .course-card-title {
-    font-size: 1.15rem !important;
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
   }
 
   .course-card-desc {
-    font-size: 0.85rem !important;
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
   }
 
   .course-stats-bar {
@@ -476,8 +543,21 @@
     font-size: 0.75rem !important;
   }
 
+  .course-card-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+
   .course-card-footer .clay-btn {
     width: 100% !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   /* Testimonials */
@@ -698,10 +778,15 @@
     overflow-x: auto !important;
     white-space: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
     width: 100% !important;
-    padding: 0.3rem !important;
+    padding: 0.35rem 0.25rem !important;
     gap: 0.35rem !important;
     border-radius: 14px !important;
+  }
+
+  .journey-stepper::-webkit-scrollbar {
+    display: none !important;
   }
 
   .step-btn {
@@ -934,16 +1019,24 @@
     overflow-x: auto !important;
     flex-wrap: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
     width: 100% !important;
     gap: 0.35rem !important;
     padding-bottom: 0.35rem !important;
   }
 
+  .lesson-nav-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
   .lesson-tab {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    padding: 0.4rem 0.65rem !important;
+    padding: 0.45rem 0.75rem !important;
+    min-height: 38px !important;
     font-size: 0.76rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   .lesson-content-card {
@@ -1212,17 +1305,26 @@
   .filter-pills-group {
     display: flex !important;
     overflow-x: auto !important;
+    flex-wrap: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
     width: 100% !important;
     gap: 0.35rem !important;
     padding-bottom: 0.25rem !important;
+  }
+
+  .filter-pills-group::-webkit-scrollbar {
+    display: none !important;
   }
 
   .filter-pill {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     font-size: 0.75rem !important;
-    padding: 0.35rem 0.6rem !important;
+    min-height: 36px !important;
+    padding: 0.35rem 0.65rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
 
   .table-wrapper {
@@ -1286,18 +1388,73 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    position: fixed !important;
+    inset: 0 !important;
     z-index: 10000 !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
   }
 
   .modal-content,
-  .modal-content.modal-md {
-    width: 100% !important;
-    max-width: 100% !important;
-    max-height: 90vh !important;
-    padding: 1.25rem 0.85rem !important;
+  .modal-content.modal-md,
+  .modal-clay-content {
+    width: 95% !important;
+    max-width: 95% !important;
+    max-height: 88vh !important;
+    padding: 1.15rem 0.85rem !important;
     border-radius: 18px !important;
     box-sizing: border-box !important;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .modal-clay-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .modal-clay-header .modal-icon {
+    font-size: 1.8rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .modal-clay-header h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .modal-clay-header p {
+    font-size: 0.78rem !important;
+  }
+
+  .modal-clay-body {
+    font-size: 0.86rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .modal-modules-preview ul {
+    font-size: 0.8rem !important;
+    padding-left: 1.1rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .modal-clay-footer {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+    padding-top: 0.75rem !important;
+  }
+
+  .modal-clay-footer .clay-btn {
+    width: 100% !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .modal-header {
@@ -1433,15 +1590,28 @@
 /* ============================================================ */
 @media (max-width: 360px) {
   .hero-title {
-    font-size: 1.7rem !important;
+    font-size: 1.5rem !important;
   }
 
-  .hero-floating-chips {
-    grid-template-columns: 1fr !important;
+  .brand-name {
+    font-size: 0.95rem !important;
   }
 
   .brand-hindi {
     display: none !important;
+  }
+
+  .lang-btn {
+    font-size: 0.68rem !important;
+    padding: 0.15rem 0.25rem !important;
+  }
+
+  .demo-persona-tabs {
+    grid-template-columns: 1fr !important;
+  }
+
+  .clay-metrics-row {
+    grid-template-columns: 1fr !important;
   }
 
   .stats-row {

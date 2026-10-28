@@ -753,7 +753,7 @@
 
 .catalog-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 1.75rem;
 }
 
@@ -901,7 +901,7 @@
 /* ============================================================ */
 .testimonials-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
@@ -1079,9 +1079,11 @@
 /* MOBILE RESPONSIVE TWEAKS FOR LANDING PAGE (PHONES) */
 /* ============================================================ */
 @media (max-width: 768px) {
-  .landing-page.clay-dark-theme {
-    gap: 2.75rem;
-    padding: 0.5rem 0 2rem;
+  .landing-page,
+  .landing-page.clay-dark-theme,
+  .landing-page.clay-light-theme {
+    gap: 2rem;
+    padding: 0.25rem 0 2rem;
   }
 
   .ambient-glow {
