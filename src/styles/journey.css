@@ -52,6 +52,138 @@
   font-weight: 400;
 }
 
+/* NCERT Class 6 Chapter Switcher Strip */
+.journey-topic-strip {
+  background: var(--bg-card, #FFFFFF);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.topic-strip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.topic-strip-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.topic-strip-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.topic-strip-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.topic-strip-pills::-webkit-scrollbar {
+  height: 4px;
+}
+
+.topic-strip-pills::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.topic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: #F8FAFC;
+  border: 1.5px solid var(--border);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.topic-pill:hover {
+  background: var(--primary-light, #EEF2FF);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.topic-pill.active {
+  background: linear-gradient(135deg, var(--primary) 0%, #4338CA 100%);
+  border-color: var(--primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+}
+
+.top-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.top-name {
+  font-weight: 600;
+}
+
+.top-ch-tag {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.topic-pill.active .top-ch-tag {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.recap-extra-box {
+  background: #F8FAFC;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.recap-extra-box strong {
+  color: var(--primary);
+  font-size: 0.92rem;
+}
+
+.recap-extra-box p {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 /* 5-Step Stepper */
 .journey-stepper {
   display: flex;
@@ -947,6 +1079,57 @@
   color: #FFFFFF;
 }
 
+.theme-dark .journey-topic-strip {
+  background: linear-gradient(145deg, #131A2E 0%, #0E1426 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .topic-strip-label {
+  color: #F8FAFC;
+}
+
+.theme-dark .topic-strip-hint {
+  color: #94A3B8;
+}
+
+.theme-dark .topic-pill {
+  background: #182238;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #E2E8F0;
+}
+
+.theme-dark .topic-pill:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: #00F0FF;
+}
+
+.theme-dark .topic-pill.active {
+  background: linear-gradient(135deg, #4F46E5 0%, #00F0FF 100%);
+  border-color: #00F0FF;
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.35);
+}
+
+.theme-dark .top-ch-tag {
+  background: rgba(255, 255, 255, 0.12);
+  color: #E2E8F0;
+}
+
+.theme-dark .recap-extra-box {
+  background: #131A2E;
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.theme-dark .recap-extra-box strong {
+  color: #00F0FF;
+}
+
+.theme-dark .recap-extra-box p {
+  color: #E2E8F0;
+}
+
 .theme-dark .journey-stepper {
   background: linear-gradient(145deg, #131A2E 0%, #0E1426 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1231,6 +1414,40 @@
   .journey-student-tag {
     padding: 0.3rem 0.65rem;
     font-size: 0.8rem;
+  }
+
+  .journey-topic-strip {
+    padding: 0.75rem 0.85rem;
+    border-radius: 14px;
+    gap: 0.5rem;
+  }
+
+  .topic-strip-label {
+    font-size: 0.82rem;
+  }
+
+  .topic-strip-hint {
+    font-size: 0.72rem;
+  }
+
+  .topic-strip-pills {
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .topic-pill {
+    padding: 0.42rem 0.75rem;
+    font-size: 0.82rem;
+    gap: 0.4rem;
+  }
+
+  .top-icon {
+    font-size: 0.95rem;
+  }
+
+  .top-ch-tag {
+    font-size: 0.68rem;
+    padding: 0.1rem 0.35rem;
   }
 
   .journey-stepper {

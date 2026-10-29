@@ -38,8 +38,9 @@ export default function LandingPage() {
   const coursesList = [
     {
       id: 'course-fractions',
-      title: 'Fractions & Visual Sharing',
-      titleHi: 'भिन्न और सचित्र बँटवारा',
+      topicId: 'fractions',
+      title: 'Fractions & Visual Sharing (NCERT Ch 7)',
+      titleHi: 'भिन्न और सचित्र बँटवारा (अध्याय 7)',
       class: 6,
       subject: 'mathematics',
       subjectLabel: 'Mathematics',
@@ -57,22 +58,103 @@ export default function LandingPage() {
     },
     {
       id: 'course-whole-numbers',
-      title: 'Whole Numbers & Place Value',
-      titleHi: 'पूर्ण संख्याएँ और स्थानीय मान',
+      topicId: 'whole-numbers',
+      title: 'Whole Numbers & Number Line (NCERT Ch 2)',
+      titleHi: 'पूर्ण संख्याएँ और संख्या रेखा (अध्याय 2)',
       class: 6,
       subject: 'mathematics',
       subjectLabel: 'Mathematics',
       subjectLabelHi: 'गणित',
       difficulty: 'Foundation',
       difficultyHi: 'बुनियादी',
-      levelBadge: '🌱 Prerequisite',
+      levelBadge: '🌱 Core Foundation',
       lessonsCount: 5,
-      questionsCount: 25,
+      questionsCount: 15,
       icon: '🔢',
       color: 'lime',
       isLive: true,
-      summary: 'Number lines, place value system, properties of addition and multiplication.',
-      summaryHi: 'संख्या रेखा, स्थानीय मान प्रणाली और जोड़-गुणा के बुनियादी गुणधर्म।'
+      summary: 'Natural vs whole numbers, predecessor/successor, number line operations, and closure/commutative properties.',
+      summaryHi: 'प्राकृतिक व पूर्ण संख्याएँ, पूर्ववर्ती/परवर्ती, संख्या रेखा पर संक्रियाएँ और गुणधर्म।'
+    },
+    {
+      id: 'course-playing-numbers',
+      topicId: 'playing-with-numbers',
+      title: 'Playing with Numbers (NCERT Ch 3)',
+      titleHi: 'संख्याओं के साथ खेलना - HCF व LCM (अध्याय 3)',
+      class: 6,
+      subject: 'mathematics',
+      subjectLabel: 'Mathematics',
+      subjectLabelHi: 'गणित',
+      difficulty: 'Core & Essential',
+      difficultyHi: 'महत्वपूर्ण बुनियादी',
+      levelBadge: '⚡ High Yield',
+      lessonsCount: 6,
+      questionsCount: 13,
+      icon: '🎲',
+      color: 'purple',
+      isLive: true,
+      summary: 'Factors, multiples, prime & composite numbers, divisibility tests (2-11), prime factorisation, HCF and LCM.',
+      summaryHi: 'गुणनखंड, गुणज, अभाज्य व भाज्य संख्याएँ, विभाज्यता नियम, म.स.प. (HCF) और ल.स.प. (LCM)।'
+    },
+    {
+      id: 'course-integers',
+      topicId: 'integers',
+      title: 'Integers & Negative Numbers (NCERT Ch 6)',
+      titleHi: 'पूर्णांक और ऋणात्मक संख्याएँ (अध्याय 6)',
+      class: 6,
+      subject: 'mathematics',
+      subjectLabel: 'Mathematics',
+      subjectLabelHi: 'गणित',
+      difficulty: 'Intermediate',
+      difficultyHi: 'मध्यम',
+      levelBadge: '⚡ Core Concept',
+      lessonsCount: 5,
+      questionsCount: 10,
+      icon: '➖➕',
+      color: 'magenta',
+      isLive: true,
+      summary: 'Need for negative numbers, number line representation, ordering, absolute value, and integer addition/subtraction rules.',
+      summaryHi: 'ऋणात्मक संख्याएँ, संख्या रेखा पर निरूपण, तुलना, योज्य प्रतिलोम और पूर्णांकों का जोड़-घटाव।'
+    },
+    {
+      id: 'course-decimals',
+      topicId: 'decimals',
+      title: 'Decimals in Daily Life (NCERT Ch 8)',
+      titleHi: 'दशमलव और व्यावहारिक उपयोग (अध्याय 8)',
+      class: 6,
+      subject: 'mathematics',
+      subjectLabel: 'Mathematics',
+      subjectLabelHi: 'गणित',
+      difficulty: 'Intermediate',
+      difficultyHi: 'मध्यम',
+      levelBadge: '💎 Practical Math',
+      lessonsCount: 4,
+      questionsCount: 7,
+      icon: '🪙',
+      color: 'amber',
+      isLive: true,
+      summary: 'Tenths and hundredths, place value grid, comparing decimals, money & measurement conversion, and decimal addition.',
+      summaryHi: 'दशांश व शतांश, स्थानीय मान तालिका, दशमलवों की तुलना, रुपये-पैसे और लंबाई में उपयोग।'
+    },
+    {
+      id: 'course-basic-geometry',
+      topicId: 'basic-geometry',
+      title: 'Basic Geometrical Ideas (NCERT Ch 4)',
+      titleHi: 'आधारभूत ज्यामितीय अवधारणाएँ (अध्याय 4)',
+      class: 6,
+      subject: 'mathematics',
+      subjectLabel: 'Mathematics',
+      subjectLabelHi: 'गणित',
+      difficulty: 'Visual & Spatial',
+      difficultyHi: 'सचित्र ज्यामिति',
+      levelBadge: '📐 Visual Geometry',
+      lessonsCount: 4,
+      questionsCount: 7,
+      icon: '📐',
+      color: 'cyan',
+      isLive: true,
+      summary: 'Points, line segments, rays, curves, polygons, angles, triangles, quadrilaterals, and circle parts.',
+      summaryHi: 'बिंदु, रेखाखंड, किरण, सरल व बंद वक्र, बहुभुज, कोण, त्रिभुज, चतुर्भुज और वृत्त।'
     },
     {
       id: 'course-food-components',
@@ -92,25 +174,6 @@ export default function LandingPage() {
       isLive: false,
       summary: 'Carbohydrates, proteins, fats, vitamins, balanced diet, and deficiency disease prevention.',
       summaryHi: 'कार्बोहाइड्रेट, प्रोटीन, वसा, विटामिन और संतुलित आहार की व्यावहारिक समझ।'
-    },
-    {
-      id: 'course-integers',
-      title: 'Integers & Number Line Magic',
-      titleHi: 'पूर्णांक और संख्या रेखा',
-      class: 7,
-      subject: 'mathematics',
-      subjectLabel: 'Mathematics',
-      subjectLabelHi: 'गणित',
-      difficulty: 'Intermediate',
-      difficultyHi: 'मध्यम',
-      levelBadge: '⚡ Core Concept',
-      lessonsCount: 6,
-      questionsCount: 30,
-      icon: '➖➕',
-      color: 'magenta',
-      isLive: false,
-      summary: 'Positive and negative numbers, additive inverses, and rules of integer multiplication.',
-      summaryHi: 'धनात्मक और ऋणात्मक संख्याएँ, योज्य प्रतिलोम और पूर्णांकों के गुणन नियम।'
     },
     {
       id: 'course-linear-equations',
@@ -707,7 +770,15 @@ export default function LandingPage() {
                   <button
                     type="button"
                     className="clay-btn clay-btn-cyan btn-block"
-                    onClick={() => handleStartStudent('student-1')}
+                    onClick={() => {
+                      setRole('student');
+                      setCurrentStudentId('student-1');
+                      if (course.topicId) {
+                        navigate('/student/learn?topic=' + course.topicId);
+                      } else {
+                        navigate('/student/dashboard');
+                      }
+                    }}
                   >
                     🚀 {language === 'hi' ? 'अध्याय शुरू करें' : 'Launch Adaptive Course'} &rarr;
                   </button>

@@ -249,11 +249,24 @@ export default function StudentDashboard() {
                 : 0;
 
             return (
-              <div key={topic.id} className="topic-card" onClick={() => navigate('/student/learn')}>
+              <div
+                key={topic.id}
+                className="topic-card"
+                style={{ cursor: 'pointer' }}
+                onClick={() => navigate(`/student/learn?topic=${topic.id}`)}
+              >
                 <div className="topic-card-header">
-                  <h3 className="topic-card-name">
-                    {language === 'hi' ? topic.nameHi : topic.name}
-                  </h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <span style={{ fontSize: '1.2rem' }}>{topic.icon || '📖'}</span>
+                    <h3 className="topic-card-name">
+                      {language === 'hi' ? topic.nameHi : topic.name}
+                    </h3>
+                    {topic.chapterNumber && (
+                      <span className="topic-ch-tag" style={{ fontSize: '0.72rem', padding: '0.15rem 0.4rem', borderRadius: '4px', background: 'rgba(79, 70, 229, 0.1)', color: 'var(--primary)', fontWeight: 700 }}>
+                        Ch {topic.chapterNumber}
+                      </span>
+                    )}
+                  </div>
                   <span className={getStatusBadgeClass(status)}>
                     {getTopicStatusLabel(status)}
                   </span>

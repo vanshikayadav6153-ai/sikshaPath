@@ -12,14 +12,50 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import questions from '../data/questions';
-import fractionsLesson from '../data/lessons';
+import fractionsLesson, { lessonsByTopic } from '../data/lessons';
 import FractionVisualizer from '../components/FractionVisualizer';
 import { getRecommendation } from '../engine/recommendationEngine';
+import subjects from '../data/subjects';
 
 export default function AdaptiveLearningJourney() {
   const { currentStudent, language, recordQuizResult, t } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  // Class 6 NCERT Mathematics Topics
+  const class6Topics = useMemo(() => {
+    return subjects.mathematics?.classes?.[6]?.topics || [];
+  }, []);
+
+  // Active topic in the journey
+  const topicParam = searchParams.get('topic') || currentStudent?.currentTopic || 'fractions';
+  const [activeTopicId, setActiveTopicId] = useState(topicParam);
+
+  useEffect(() => {
+    if (topicParam && topicParam !== activeTopicId) {
+      setActiveTopicId(topicParam);
+    }
+  }, [topicParam]);
+
+  const currentLesson = useMemo(() => {
+    return lessonsByTopic[activeTopicId] || fractionsLesson;
+  }, [activeTopicId]);
+
+  const handleSelectTopic = (newTopicId) => {
+    setActiveTopicId(newTopicId);
+    setSearchParams({ stage: currentStage, topic: newTopicId });
+    setDiagAnswers({});
+    setDiagSubmitted(false);
+    setDiagResult(null);
+    setTestAnswers({});
+    setTestSubmitted(false);
+    setTestResult(null);
+    setPracticeIndex(0);
+    setPracticeAnswer(null);
+    setCheckedAnswer(false);
+    setShowHint(false);
+    setActiveLessonTab('recap');
+  };
 
   // Active stage in the journey
   const stageParam = searchParams.get('stage') || 'quick-check';
@@ -33,15 +69,21 @@ export default function AdaptiveLearningJourney() {
 
   const setStage = (stg) => {
     setCurrentStage(stg);
-    setSearchParams({ stage: stg });
+    setSearchParams({ stage: stg, topic: activeTopicId });
   };
 
   // -------------------------------------------------------------
-  // STAGE 1: QUICK CHECK (Diagnostic) State
+  // Filter questions for active topic
   // -------------------------------------------------------------
+  const topicQuestions = useMemo(() => {
+    const list = questions.filter((q) => q.topic === activeTopicId);
+    return list.length > 0 ? list : questions.filter((q) => q.topic === 'fractions');
+  }, [activeTopicId]);
+
+  // STAGE 1: QUICK CHECK (Diagnostic) State
   const diagnosticQuestions = useMemo(() => {
-    return questions.filter((q) => q.type === 'diagnostic');
-  }, []);
+    return topicQuestions.filter((q) => q.type === 'diagnostic');
+  }, [topicQuestions]);
 
   const [diagAnswers, setDiagAnswers] = useState({});
   const [diagSubmitted, setDiagSubmitted] = useState(false);
@@ -87,7 +129,7 @@ export default function AdaptiveLearningJourney() {
     // Save to persistence
     recordQuizResult({
       type: 'diagnostic',
-      topic: 'fractions',
+      topic: activeTopicId,
       score,
       totalQuestions: diagnosticQuestions.length,
       correctCount: correct,
@@ -108,7 +150,7 @@ export default function AdaptiveLearningJourney() {
   const [activeLessonTab, setActiveLessonTab] = useState('recap');
 
   // Check if diagnostic was below 50% to auto-open foundation recap
-  const diagScore = currentStudent?.topicProgress?.fractions?.diagnosticScore;
+  const diagScore = currentStudent?.topicProgress?.[activeTopicId]?.diagnosticScore;
   const isStrugglingScore = diagScore != null && diagScore < 50;
 
   useEffect(() => {
@@ -120,10 +162,6 @@ export default function AdaptiveLearningJourney() {
   // -------------------------------------------------------------
   // STAGE 3: SOLVE (Practice Questions) State
   // -------------------------------------------------------------
-  const practiceQuestions = useMemo(() => {
-    return questions.filter((q) => q.type === 'practice');
-  }, []);
-
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [practiceAnswer, setPracticeAnswer] = useState(null);
   const [showHint, setShowHint] = useState(false);
@@ -152,10 +190,6 @@ export default function AdaptiveLearningJourney() {
   // -------------------------------------------------------------
   // STAGE 4: TEST (Mini-Test) State
   // -------------------------------------------------------------
-  const testQuestions = useMemo(() => {
-    return questions.filter((q) => q.type === 'test');
-  }, []);
-
   const [testAnswers, setTestAnswers] = useState({});
   const [testSubmitted, setTestSubmitted] = useState(false);
   const [testResult, setTestResult] = useState(null);
@@ -200,7 +234,7 @@ export default function AdaptiveLearningJourney() {
     // Save to persistence
     recordQuizResult({
       type: 'test',
-      topic: 'fractions',
+      topic: activeTopicId,
       score,
       totalQuestions: testQuestions.length,
       correctCount: correct,
@@ -219,8 +253,8 @@ export default function AdaptiveLearningJourney() {
   // STAGE 5: ADAPT NEXT STEP
   // -------------------------------------------------------------
   const recommendation = useMemo(() => {
-    return getRecommendation(currentStudent, 'mathematics', 'fractions');
-  }, [currentStudent]);
+    return getRecommendation(currentStudent, 'mathematics', activeTopicId);
+  }, [currentStudent, activeTopicId]);
 
   return (
     <div className="journey-page">
@@ -229,8 +263,8 @@ export default function AdaptiveLearningJourney() {
         <div className="journey-title-row">
           <div>
             <span className="journey-eyebrow">
-              {language === 'hi' ? 'कक्षा 6 गणित' : 'Class 6 Mathematics'} &middot;{' '}
-              {language === 'hi' ? 'भिन्न (Fractions)' : 'Fractions'}
+              {language === 'hi' ? 'कक्षा 6 गणित (NCERT)' : 'Class 6 Mathematics (NCERT)'} &middot;{' '}
+              {language === 'hi' ? currentLesson.titleHi : currentLesson.title}
             </span>
             <h1 className="journey-title">
               {language === 'hi' ? 'अनुकूलित शिक्षण यात्रा' : 'Adaptive Learning Journey'}
@@ -243,6 +277,34 @@ export default function AdaptiveLearningJourney() {
               <small>({currentStudent.learningPersona})</small>
             </div>
           )}
+        </div>
+
+        {/* NCERT Class 6 Chapter Switcher Strip */}
+        <div className="journey-topic-strip">
+          <div className="topic-strip-header">
+            <span className="topic-strip-label">
+              📚 {language === 'hi' ? 'NCERT कक्षा 6 गणित अध्याय:' : 'NCERT Class 6 Mathematics Chapters:'}
+            </span>
+            <span className="topic-strip-hint">
+              {language === 'hi' ? 'अध्याय बदलने के लिए क्लिक करें' : 'Click to switch chapter'}
+            </span>
+          </div>
+          <div className="topic-strip-pills">
+            {class6Topics.map((top) => (
+              <button
+                key={top.id}
+                type="button"
+                className={`topic-pill ${activeTopicId === top.id ? 'active' : ''}`}
+                onClick={() => handleSelectTopic(top.id)}
+              >
+                <span className="top-icon">{top.icon || '📖'}</span>
+                <span className="top-name">{language === 'hi' ? top.nameHi : top.name}</span>
+                {top.chapterNumber && (
+                  <span className="top-ch-tag">Ch {top.chapterNumber}</span>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 5-Step Stepper Navigation */}
@@ -285,8 +347,8 @@ export default function AdaptiveLearningJourney() {
                 <h2>{t('stageQuickCheck')}</h2>
                 <p>
                   {language === 'hi'
-                    ? '10 प्रश्नों का त्वरित डायग्नोस्टिक टेस्ट। यह आपके ज्ञान का आधार निर्धारित करता है और कमजोर अवधारणाओं को पहचानता है।'
-                    : '10 diagnostic multiple-choice questions assessing numerator, denominator, equivalent fractions, and prerequisites.'}
+                    ? `${diagnosticQuestions.length} प्रश्नों का त्वरित डायग्नोस्टिक टेस्ट। यह आपके ज्ञान का आधार निर्धारित करता है और कमजोर अवधारणाओं को पहचानता है।`
+                    : `${diagnosticQuestions.length} diagnostic multiple-choice questions assessing core NCERT concepts and prerequisites.`}
                 </p>
               </div>
             </div>
@@ -415,18 +477,18 @@ export default function AdaptiveLearningJourney() {
         )}
 
         {/* ============================================================ */}
-        {/* 2. LEARN (Visual Explanations & Sandbox) */}
+        {/* 2. LEARN (Visual Explanations & Modules) */}
         {/* ============================================================ */}
         {currentStage === 'learn' && (
           <section className="stage-panel learn-panel">
             <div className="stage-intro-banner">
               <div className="intro-icon">📘</div>
               <div>
-                <h2>{t('stageLearn')}</h2>
+                <h2>{language === 'hi' ? currentLesson.titleHi : currentLesson.title}</h2>
                 <p>
                   {language === 'hi'
-                    ? 'भिन्न की सचित्र व्याख्याएँ, इंटरएक्टिव विज़ुअलाइज़र और कक्षा 6 के लिए सरल भाषा में उदाहरण।'
-                    : 'Interactive fractions lesson with visual diagrams, worked examples, and foundation recap.'}
+                    ? (currentLesson.subtitleHi || 'एनसीईआरटी सचित्र व्याख्याएँ, इंटरएक्टिव विज़ुअलाइज़र और कक्षा 6 के लिए सरल भाषा में उदाहरण।')
+                    : (currentLesson.subtitle || 'Interactive lesson with visual diagrams, worked examples, and foundation recap.')}
                 </p>
               </div>
             </div>
@@ -442,15 +504,17 @@ export default function AdaptiveLearningJourney() {
                 {isStrugglingScore && <span className="tab-pill">Recommended</span>}
               </button>
 
-              <button
-                type="button"
-                className={`lesson-tab ${activeLessonTab === 'sandbox' ? 'active' : ''}`}
-                onClick={() => setActiveLessonTab('sandbox')}
-              >
-                🎨 {language === 'hi' ? 'सचित्र भिन्न लैब' : 'Interactive Visualizer'}
-              </button>
+              {activeTopicId === 'fractions' && (
+                <button
+                  type="button"
+                  className={`lesson-tab ${activeLessonTab === 'sandbox' ? 'active' : ''}`}
+                  onClick={() => setActiveLessonTab('sandbox')}
+                >
+                  🎨 {language === 'hi' ? 'सचित्र भिन्न लैब' : 'Interactive Visualizer'}
+                </button>
+              )}
 
-              {fractionsLesson.modules.map((mod) => (
+              {currentLesson.modules.map((mod) => (
                 <button
                   key={mod.id}
                   type="button"
@@ -465,15 +529,15 @@ export default function AdaptiveLearningJourney() {
             {/* Lesson Tab Content */}
             <div className="lesson-content-card">
               {/* Foundation Recap */}
-              {activeLessonTab === 'recap' && (
+              {activeLessonTab === 'recap' && currentLesson.foundationRecap && (
                 <div className="recap-content">
                   <div className="callout-box info">
-                    <h3>{language === 'hi' ? fractionsLesson.foundationRecap.titleHi : fractionsLesson.foundationRecap.title}</h3>
-                    <p>{language === 'hi' ? fractionsLesson.foundationRecap.descriptionHi : fractionsLesson.foundationRecap.description}</p>
+                    <h3>{language === 'hi' ? currentLesson.foundationRecap.titleHi : currentLesson.foundationRecap.title}</h3>
+                    <p>{language === 'hi' ? currentLesson.foundationRecap.descriptionHi : currentLesson.foundationRecap.description}</p>
                   </div>
 
                   <div className="recap-points-list">
-                    {fractionsLesson.foundationRecap.keyPoints.map((pt, i) => (
+                    {currentLesson.foundationRecap.keyPoints?.map((pt, i) => (
                       <div key={i} className="recap-point-item">
                         <span className="point-icon">📌</span>
                         <p>{language === 'hi' ? pt.hi : pt.en}</p>
@@ -481,25 +545,32 @@ export default function AdaptiveLearningJourney() {
                     ))}
                   </div>
 
-                  <div className="recap-visual-box">
-                    <FractionVisualizer
-                      initialNumerator={1}
-                      initialDenominator={4}
-                      interactive={true}
-                      showControls={false}
-                      language={language}
-                    />
-                    <p className="recap-caption">
-                      {language === 'hi'
-                        ? fractionsLesson.foundationRecap.visualExample.captionHi
-                        : fractionsLesson.foundationRecap.visualExample.caption}
-                    </p>
-                  </div>
+                  {activeTopicId === 'fractions' ? (
+                    <div className="recap-visual-box">
+                      <FractionVisualizer
+                        initialNumerator={1}
+                        initialDenominator={4}
+                        interactive={true}
+                        showControls={false}
+                        language={language}
+                      />
+                      <p className="recap-caption">
+                        {language === 'hi'
+                          ? currentLesson.foundationRecap.visualExample?.captionHi
+                          : currentLesson.foundationRecap.visualExample?.caption}
+                      </p>
+                    </div>
+                  ) : currentLesson.foundationRecap.visualExample ? (
+                    <div className="callout-box success recap-extra-box">
+                      <strong>💡 {language === 'hi' ? 'स्मरण रखने योग्य बिंदु (Key Rule):' : 'Key Rule to Remember:'}</strong>
+                      <p>{language === 'hi' ? currentLesson.foundationRecap.visualExample.captionHi : currentLesson.foundationRecap.visualExample.caption}</p>
+                    </div>
+                  ) : null}
                 </div>
               )}
 
-              {/* Interactive Visualizer Sandbox */}
-              {activeLessonTab === 'sandbox' && (
+              {/* Interactive Visualizer Sandbox (Fractions Only) */}
+              {activeTopicId === 'fractions' && activeLessonTab === 'sandbox' && (
                 <div className="sandbox-tab-content">
                   <p className="sandbox-help-text">
                     {language === 'hi'
@@ -517,9 +588,9 @@ export default function AdaptiveLearningJourney() {
               )}
 
               {/* Individual Concept Modules */}
-              {fractionsLesson.modules.map((mod) => {
+              {currentLesson.modules.map((mod) => {
                 if (activeLessonTab !== mod.id) return null;
-                const bulletList = language === 'hi' ? mod.content.hi : mod.content.en;
+                const bulletList = language === 'hi' ? (mod.content?.hi || []) : (mod.content?.en || []);
 
                 return (
                   <div key={mod.id} className="module-content">
@@ -536,22 +607,24 @@ export default function AdaptiveLearningJourney() {
                     </div>
 
                     {/* Worked Example */}
-                    <div className="worked-example-card">
-                      <div className="worked-header">
-                        <span>📝 {language === 'hi' ? 'हल किया गया उदाहरण (Worked Solution)' : 'Worked Example'}</span>
+                    {mod.workedExample && (
+                      <div className="worked-example-card">
+                        <div className="worked-header">
+                          <span>📝 {language === 'hi' ? 'हल किया गया उदाहरण (NCERT Worked Example)' : 'NCERT Worked Example'}</span>
+                        </div>
+                        <p className="worked-problem">
+                          <strong>{language === 'hi' ? 'प्रश्न:' : 'Problem:'}</strong>{' '}
+                          {language === 'hi' ? mod.workedExample.problemHi : mod.workedExample.problem}
+                        </p>
+                        <p className="worked-solution">
+                          <strong>{language === 'hi' ? 'हल:' : 'Step-by-step Solution:'}</strong>{' '}
+                          {language === 'hi' ? mod.workedExample.solutionHi : mod.workedExample.solution}
+                        </p>
                       </div>
-                      <p className="worked-problem">
-                        <strong>{language === 'hi' ? 'प्रश्न:' : 'Problem:'}</strong>{' '}
-                        {language === 'hi' ? mod.workedExample.problemHi : mod.workedExample.problem}
-                      </p>
-                      <p className="worked-solution">
-                        <strong>{language === 'hi' ? 'हल:' : 'Step-by-step Solution:'}</strong>{' '}
-                        {language === 'hi' ? mod.workedExample.solutionHi : mod.workedExample.solution}
-                      </p>
-                    </div>
+                    )}
 
-                    {/* Interactive diagram for this module */}
-                    {mod.visual && (
+                    {/* Interactive diagram for fractions */}
+                    {activeTopicId === 'fractions' && mod.visual && (
                       <div className="module-visual-wrap">
                         <FractionVisualizer
                           initialNumerator={mod.visual.numerator}
@@ -749,8 +822,8 @@ export default function AdaptiveLearningJourney() {
                 <h2>{t('stageTest')}</h2>
                 <p>
                   {language === 'hi'
-                    ? '10 प्रश्नों की लघु परीक्षा। इसमें सभी छह अवधारणाओं के प्रश्न शामिल हैं। अपना स्कोर जाँचें!'
-                    : '10-question mini-test to measure topic understanding and adapt your next step.'}
+                    ? `${testQuestions.length} प्रश्नों की लघु परीक्षा। इसमें इस अध्याय की सभी मुख्य अवधारणाओं के प्रश्न शामिल हैं। अपना स्कोर जाँचें!`
+                    : `${testQuestions.length}-question mini-test to measure topic understanding and adapt your next step.`}
                 </p>
               </div>
             </div>

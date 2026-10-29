@@ -15,16 +15,63 @@ const subjects = {
             id: 'whole-numbers',
             name: 'Whole Numbers',
             nameHi: 'पूर्ण संख्याएँ',
+            icon: '🔢',
+            chapterNumber: 2,
             prerequisites: [],
-            concepts: ['place-value', 'operations'],
+            concepts: [
+              'natural-vs-whole',
+              'predecessor-successor',
+              'number-line-operations',
+              'properties-closure-commutative',
+              'distributive-property',
+              'whole-number-patterns'
+            ],
             order: 0,
-            fullyImplemented: false
+            fullyImplemented: true
+          },
+          {
+            id: 'playing-with-numbers',
+            name: 'Playing with Numbers',
+            nameHi: 'संख्याओं के साथ खेलना',
+            icon: '🧩',
+            chapterNumber: 3,
+            prerequisites: ['whole-numbers'],
+            concepts: [
+              'factors-and-multiples',
+              'prime-and-composite',
+              'divisibility-rules',
+              'prime-factorisation',
+              'hcf-gcd',
+              'lcm-word-problems'
+            ],
+            order: 1,
+            fullyImplemented: true
+          },
+          {
+            id: 'integers',
+            name: 'Integers',
+            nameHi: 'पूर्णांक',
+            icon: '➖➕',
+            chapterNumber: 6,
+            prerequisites: ['whole-numbers'],
+            concepts: [
+              'need-for-integers',
+              'integers-on-number-line',
+              'ordering-comparing-integers',
+              'addition-of-integers',
+              'subtraction-of-integers',
+              'integer-word-problems'
+            ],
+            order: 2,
+            fullyImplemented: true
           },
           {
             id: 'fractions',
             name: 'Fractions',
             nameHi: 'भिन्न',
-            prerequisites: ['whole-numbers', 'division-basics'],
+            icon: '🍕',
+            chapterNumber: 7,
+            prerequisites: ['whole-numbers'],
             concepts: [
               'numerator-denominator',
               'types-of-fractions',
@@ -33,44 +80,42 @@ const subjects = {
               'addition-subtraction-fractions',
               'fraction-word-problems'
             ],
-            order: 1,
+            order: 3,
             fullyImplemented: true
           },
           {
             id: 'decimals',
             name: 'Decimals',
             nameHi: 'दशमलव',
+            icon: '🎯',
+            chapterNumber: 8,
             prerequisites: ['fractions'],
-            concepts: ['decimal-place-value', 'decimal-operations'],
-            order: 2,
-            fullyImplemented: false
-          },
-          {
-            id: 'integers',
-            name: 'Integers',
-            nameHi: 'पूर्णांक',
-            prerequisites: ['whole-numbers'],
-            concepts: ['negative-numbers', 'number-line'],
-            order: 3,
-            fullyImplemented: false
-          },
-          {
-            id: 'algebra-intro',
-            name: 'Introduction to Algebra',
-            nameHi: 'बीजगणित का परिचय',
-            prerequisites: ['whole-numbers'],
-            concepts: ['variables', 'simple-equations'],
+            concepts: [
+              'tenths-and-hundredths',
+              'decimals-on-number-line',
+              'decimals-money-measurement',
+              'comparing-decimals',
+              'addition-subtraction-decimals'
+            ],
             order: 4,
-            fullyImplemented: false
+            fullyImplemented: true
           },
           {
-            id: 'geometry-basics',
-            name: 'Basic Geometry',
-            nameHi: 'मूल ज्यामिति',
+            id: 'basic-geometry',
+            name: 'Basic Geometrical Ideas',
+            nameHi: 'आधारभूत ज्यामितीय अवधारणाएँ',
+            icon: '📐',
+            chapterNumber: 4,
             prerequisites: [],
-            concepts: ['lines-angles', 'triangles'],
+            concepts: [
+              'points-lines-rays',
+              'intersecting-parallel-lines',
+              'angles-and-types',
+              'triangles-quadrilaterals',
+              'circles-radius-diameter'
+            ],
             order: 5,
-            fullyImplemented: false
+            fullyImplemented: true
           }
         ]
       },
