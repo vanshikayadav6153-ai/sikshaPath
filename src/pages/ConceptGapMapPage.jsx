@@ -86,7 +86,7 @@ export default function ConceptGapMapPage() {
               className={`topic-pill ${selectedTopicId === top.id ? 'active' : ''}`}
               onClick={() => {
                 setSelectedTopicId(top.id);
-                setSearchParams({ topic: top.id });
+                setSearchParams({ topic: top.id }, { replace: true });
               }}
             >
               <span className="top-icon">{top.icon || '📖'}</span>

@@ -63,10 +63,8 @@ export default function RoleSelectionPage() {
     });
 
     setSaveSuccess(true);
-    setTimeout(() => {
-      setRole('student');
-      navigate('/student/dashboard');
-    }, 600);
+    setRole('student');
+    navigate('/student/dashboard');
   };
 
   return (

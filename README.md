@@ -300,3 +300,4 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more informa
 - **National Council of Educational Research and Training (NCERT)** for public curriculum frameworks and mathematical pedagogical guidelines.
 - **NEP 2020 & NIPUN Bharat Initiative** for inspiring foundational literacy and numeracy (FLN) digital innovations.
 - Developed with ❤️ for educators, students, and lifelong learners across India.
+

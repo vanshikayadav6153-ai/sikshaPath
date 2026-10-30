@@ -43,7 +43,7 @@ export default function AdaptiveLearningJourney() {
 
   const handleSelectTopic = (newTopicId) => {
     setActiveTopicId(newTopicId);
-    setSearchParams({ stage: currentStage, topic: newTopicId });
+    setSearchParams({ stage: currentStage, topic: newTopicId }, { replace: true });
     setDiagAnswers({});
     setDiagSubmitted(false);
     setDiagResult(null);
@@ -65,11 +65,11 @@ export default function AdaptiveLearningJourney() {
     if (stageParam !== currentStage) {
       setCurrentStage(stageParam);
     }
-  }, [stageParam]);
+  }, [stageParam, currentStage]);
 
   const setStage = (stg) => {
     setCurrentStage(stg);
-    setSearchParams({ stage: stg, topic: activeTopicId });
+    setSearchParams({ stage: stg, topic: activeTopicId }, { replace: true });
   };
 
   // -------------------------------------------------------------

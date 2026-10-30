@@ -1,6 +1,6 @@
 /**
  * SikshaPath - Application Entry Point
- * Uses HashRouter for robust routing across GitHub Pages, static hosts, and Vercel.
+ * Instant single-pass rendering without StrictMode double-load flicker.
  */
 
 import React from 'react';
@@ -9,9 +9,7 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </React.StrictMode>
+  <HashRouter>
+    <App />
+  </HashRouter>
 );

@@ -384,9 +384,16 @@ export default function LandingPage() {
             >
               ⚡ {t('startLearning')} &rarr;
             </button>
-            <a href="#courses" className="clay-btn clay-btn-magenta btn-xl">
+            <button
+              type="button"
+              className="clay-btn clay-btn-magenta btn-xl"
+              onClick={() => {
+                const el = document.getElementById('courses');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               📚 {language === 'hi' ? 'कोर्स देखें' : 'Explore Courses'}
-            </a>
+            </button>
             <button
               type="button"
               className="clay-btn clay-btn-dark btn-xl"
