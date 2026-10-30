@@ -21,6 +21,7 @@ export default function Navbar({ onToggleSidebar }) {
     theme,
     toggleTheme,
     setIsResetModalOpen,
+    setIsLoginModalOpen,
     t
   } = useApp();
 
@@ -54,7 +55,7 @@ export default function Navbar({ onToggleSidebar }) {
             <div className="brand-logo-icon">📐</div>
             <div className="brand-text-group">
               <span className="brand-name">
-                SikshaPath <span className="brand-hindi">शिक्षापथ</span>
+                {language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}
               </span>
               <span className="brand-tagline">
                 {language === 'hi' ? 'अपनी गति से सीखें' : 'Learn at Your Pace'}
@@ -152,28 +153,47 @@ export default function Navbar({ onToggleSidebar }) {
                   onMouseLeave={() => setProfileDropdownOpen(false)}
                 >
                   <div className="dropdown-header">
-                    <small>{language === 'hi' ? 'डेमो छात्र चुनें:' : 'Select Demo Persona:'}</small>
+                    <small>{language === 'hi' ? 'छात्र खाता चुनें (व्यक्तिगत डेटा):' : 'Saved Student Accounts:'}</small>
                   </div>
-                  {students.map((stu) => (
+                  {students.map((stu) => {
+                    const streak = stu.learningStreak || 0;
+                    return (
+                      <button
+                        key={stu.id}
+                        type="button"
+                        className={`dropdown-item ${stu.id === currentStudentId ? 'selected' : ''}`}
+                        onClick={() => {
+                          setCurrentStudentId(stu.id);
+                          setProfileDropdownOpen(false);
+                        }}
+                      >
+                        <span className="item-avatar">{stu.avatar}</span>
+                        <div className="item-info">
+                          <strong>{stu.name}</strong>
+                          <span className="item-desc">
+                            Class {stu.class} &middot; 🔥 {streak} {language === 'hi' ? 'दिन स्ट्रीक' : 'days streak'}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: '0.4rem', marginTop: '0.4rem' }}>
                     <button
-                      key={stu.id}
                       type="button"
-                      className={`dropdown-item ${stu.id === currentStudentId ? 'selected' : ''}`}
+                      className="dropdown-item"
                       onClick={() => {
-                        setCurrentStudentId(stu.id);
                         setProfileDropdownOpen(false);
+                        setIsLoginModalOpen(true);
                       }}
+                      style={{ color: 'var(--primary)', fontWeight: 600 }}
                     >
-                      <span className="item-avatar">{stu.avatar}</span>
+                      <span className="item-avatar">➕</span>
                       <div className="item-info">
-                        <strong>{stu.name}</strong>
-                        <span className="item-desc">
-                          {language === 'hi' ? stu.personaLabelHi : stu.personaLabel}
-                        </span>
+                        <strong>{language === 'hi' ? 'नया छात्र लॉगिन / खाता जोड़ें' : 'Login / Register New Student'}</strong>
+                        <span className="item-desc">{language === 'hi' ? '0% प्रगति और 0 स्ट्रीक से शुरुआत' : 'Start fresh with 0% progress'}</span>
                       </div>
                     </button>
-                  ))}
-                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: '0.4rem', marginTop: '0.4rem' }}>
+
                     <button
                       type="button"
                       className="dropdown-item"
@@ -184,7 +204,7 @@ export default function Navbar({ onToggleSidebar }) {
                     >
                       <span className="item-avatar">⚙️</span>
                       <div className="item-info">
-                        <strong>{language === 'hi' ? 'प्रोफ़ाइल बदलें / कस्टमाइज़' : 'Change / Customize Profile'}</strong>
+                        <strong>{language === 'hi' ? 'प्रोफ़ाइल प्रबंधन व सेटिंग्स' : 'Profile & Role Settings'}</strong>
                         <span className="item-desc">{language === 'hi' ? 'कक्षा, विषय व भाषा चुनें' : 'Configure grade & language'}</span>
                       </div>
                     </button>

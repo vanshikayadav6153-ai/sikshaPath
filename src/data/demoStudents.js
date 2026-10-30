@@ -1,12 +1,80 @@
 /**
- * SikshaPath - Initial Demo Students
- * Realistic profiles reflecting three distinct student personas:
- * 1. Struggling learner needing foundation support
- * 2. On-track learner practicing steadily
- * 3. Advanced learner ready for high difficulty challenges
+ * SikshaPath - Initial Students State & Demo Profiles
+ *
+ * All fresh student profiles start with:
+ * - 0% Overall Progress
+ * - 0 Day Streak (streak only increments when consistency is maintained)
+ * - 0 Activities Completed
+ * - Empty topicProgress and quizHistory
+ *
+ * Real progress is only recorded when the student takes quizzes, practices, and tests.
  */
 
 export const initialStudents = [
+  {
+    id: 'student-1',
+    name: 'Aarav Sharma',
+    avatar: '👦',
+    class: 6,
+    preferredLanguage: 'en',
+    subject: 'mathematics',
+    currentTopic: 'fractions',
+    learningPersona: 'on-track',
+    personaLabel: 'Student Learner',
+    personaLabelHi: 'छात्र शिक्षार्थी',
+    personaDescription: 'Class 6 student. Starts at 0% progress and 0 streak. Progress records as learning begins.',
+    personaDescriptionHi: 'कक्षा 6 का छात्र। शुरुआत 0% प्रगति और 0 स्ट्रीक से। अध्ययन शुरू होने पर वास्तविक प्रगति दर्ज होती है।',
+    learningStreak: 0,
+    lastActiveDate: null,
+    topicProgress: {},
+    quizHistory: [],
+    teacherOverride: null
+  },
+  {
+    id: 'student-2',
+    name: 'Priya Patel',
+    avatar: '👧',
+    class: 6,
+    preferredLanguage: 'en',
+    subject: 'mathematics',
+    currentTopic: 'fractions',
+    learningPersona: 'on-track',
+    personaLabel: 'Student Learner',
+    personaLabelHi: 'छात्रा शिक्षार्थी',
+    personaDescription: 'Class 6 student. Separate profile with isolated progress tracking and consistency streak.',
+    personaDescriptionHi: 'कक्षा 6 की छात्रा। अलग प्रोफाइल, स्वतंत्र प्रगति ट्रैकिंग और निरंतरता स्ट्रीक।',
+    learningStreak: 0,
+    lastActiveDate: null,
+    topicProgress: {},
+    quizHistory: [],
+    teacherOverride: null
+  },
+  {
+    id: 'student-3',
+    name: 'Rohan Verma',
+    avatar: '🧑‍🎓',
+    class: 6,
+    preferredLanguage: 'en',
+    subject: 'mathematics',
+    currentTopic: 'fractions',
+    learningPersona: 'on-track',
+    personaLabel: 'Student Learner',
+    personaLabelHi: 'छात्र शिक्षार्थी',
+    personaDescription: 'Class 6 student. Individual progress and diagnostic data stored independently.',
+    personaDescriptionHi: 'कक्षा 6 का छात्र। व्यक्तिगत प्रगति और डायग्नोस्टिक डेटा अलग से सुरक्षित।',
+    learningStreak: 0,
+    lastActiveDate: null,
+    topicProgress: {},
+    quizHistory: [],
+    teacherOverride: null
+  }
+];
+
+/**
+ * Pre-filled sample profiles specifically for Evaluators & Hackathon Judges
+ * to preview how struggling, on-track, and advanced personas look with filled graphs.
+ */
+export const mockEvaluatorStudents = [
   {
     id: 'student-1',
     name: 'Aarav Sharma',
@@ -21,6 +89,7 @@ export const initialStudents = [
     personaDescription: 'Struggles with equivalent fractions and addition of fractions. Needs foundation revision and visual representations.',
     personaDescriptionHi: 'तुल्य भिन्न और भिन्न जोड़ में कठिनाई। बुनियादी अवधारणाओं और सचित्र व्याख्या की आवश्यकता।',
     learningStreak: 2,
+    lastActiveDate: new Date().toISOString().slice(0, 10),
     topicProgress: {
       'whole-numbers': {
         status: 'understood',
@@ -65,7 +134,7 @@ export const initialStudents = [
         weakConcepts: ['equivalent-fractions', 'addition-subtraction-fractions']
       }
     ],
-    teacherOverride: null // No override initially; teacher can set one
+    teacherOverride: null
   },
   {
     id: 'student-2',
@@ -81,6 +150,7 @@ export const initialStudents = [
     personaDescription: 'Solid grasp of basic fractions. Practicing word problems and unlike denominator additions.',
     personaDescriptionHi: 'मूल भिन्न अवधारणाओं की अच्छी समझ। इबारती प्रश्नों और असमान हर वाले जोड़ का नियमित अभ्यास जारी।',
     learningStreak: 5,
+    lastActiveDate: new Date().toISOString().slice(0, 10),
     topicProgress: {
       'whole-numbers': {
         status: 'understood',
@@ -141,6 +211,7 @@ export const initialStudents = [
     personaDescription: 'High accuracy and quick concept mastery. Ready for competitive and multi-step challenge problems.',
     personaDescriptionHi: 'उच्च सटीकता और तीव्र समझ। बहु-चरणीय और कठिन चुनौती प्रश्नों के लिए पूरी तरह तैयार।',
     learningStreak: 9,
+    lastActiveDate: new Date().toISOString().slice(0, 10),
     topicProgress: {
       'whole-numbers': {
         status: 'understood',
@@ -191,4 +262,3 @@ export const initialStudents = [
 ];
 
 export default initialStudents;
-

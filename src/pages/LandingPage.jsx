@@ -22,6 +22,7 @@ export default function LandingPage() {
     setCurrentStudentId,
     students,
     updateStudentData,
+    loginOrRegisterStudent,
     theme,
     t
   } = useApp();
@@ -312,14 +313,11 @@ export default function LandingPage() {
     e.preventDefault();
     const finalName = enrollName.trim() || 'Hero Learner';
     setLanguage(enrollLang);
-    setRole('student');
-    setCurrentStudentId('student-1');
-    updateStudentData({
+    loginOrRegisterStudent({
       name: finalName,
-      class: Number(enrollClass),
-      preferredLanguage: enrollLang,
-      subject: enrollSubject,
-      currentTopic: 'fractions'
+      classGrade: Number(enrollClass),
+      language: enrollLang,
+      subject: enrollSubject
     });
     navigate('/student/dashboard');
   };

@@ -1,7 +1,7 @@
 /**
  * SikshaPath - Global Application Context
  * Handles student/teacher state, language translation, localStorage persistence,
- * quiz records, concept mastery updates, and teacher override recommendations.
+ * quiz records, concept mastery updates, streak tracking, and teacher overrides.
  */
 
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
@@ -16,8 +16,10 @@ import {
   setRolePreference,
   getThemePreference,
   setThemePreference,
-  resetAllData
+  resetAllData,
+  loadEvaluatorSampleData
 } from '../utils/progressStorage';
+import { getActiveStreak, recordActivityStreak } from '../utils/streakEngine';
 import { translations } from '../data/translations';
 import { calculateUpdatedMastery } from '../engine/recommendationEngine';
 
@@ -30,6 +32,7 @@ export function AppProvider({ children }) {
   const [language, setLanguageState] = useState(() => getLanguagePreference());
   const [theme, setThemeState] = useState(() => getThemePreference());
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const setTheme = useCallback((newTheme) => {
     setThemeState(newTheme);
@@ -76,9 +79,14 @@ export function AppProvider({ children }) {
     [language]
   );
 
-  // Get current active student object
+  // Get current active student object with dynamic consistency streak
   const currentStudent = useMemo(() => {
-    return students.find((s) => s.id === currentStudentId) || students[0] || null;
+    const stu = students.find((s) => s.id === currentStudentId) || students[0] || null;
+    if (!stu) return null;
+    return {
+      ...stu,
+      learningStreak: getActiveStreak(stu)
+    };
   }, [students, currentStudentId]);
 
   // Update current student data
@@ -109,6 +117,76 @@ export function AppProvider({ children }) {
       })
     );
   }, []);
+
+  // Login or Register a Student with separate individual progress
+  const loginOrRegisterStudent = useCallback(
+    ({ name, classGrade = 6, language: prefLang = 'en', subject = 'mathematics' }) => {
+      const cleanName = (name || '').trim();
+      if (!cleanName) return null;
+
+      // Check if student with this name already exists
+      const existing = students.find(
+        (s) => s.name.trim().toLowerCase() === cleanName.toLowerCase()
+      );
+
+      if (existing) {
+        setCurrentStudentIdState(existing.id);
+        setActiveStudentId(existing.id);
+        setRoleState('student');
+        setRolePreference('student');
+        return { isNew: false, student: existing };
+      }
+
+      // Brand new student: starts at strictly ZERO progress, ZERO streak, and ZERO activities!
+      const newStudent = {
+        id: `student-${Date.now()}`,
+        name: cleanName,
+        avatar: ['👦', '👧', '🧑‍🎓', '🌟', '🚀', '⭐', '🦉', '🎓'][students.length % 8],
+        class: Number(classGrade) || 6,
+        preferredLanguage: prefLang || language || 'en',
+        subject: subject || 'mathematics',
+        currentTopic: 'fractions',
+        learningPersona: 'on-track',
+        personaLabel: 'Student Learner',
+        personaLabelHi: 'छात्र शिक्षार्थी',
+        personaDescription: `Class ${classGrade} student. Separate profile with isolated progress tracking and daily consistency streak.`,
+        personaDescriptionHi: `कक्षा ${classGrade} का शिक्षार्थी। अलग प्रोफाइल, स्वतंत्र प्रगति ट्रैकिंग और निरंतरता स्ट्रीक।`,
+        learningStreak: 0,
+        lastActiveDate: null,
+        topicProgress: {}, // 0% progress!
+        quizHistory: [],   // 0 past quizzes!
+        teacherOverride: null
+      };
+
+      const updatedList = [newStudent, ...students];
+      setStudents(updatedList);
+      saveStudents(updatedList);
+      setCurrentStudentIdState(newStudent.id);
+      setActiveStudentId(newStudent.id);
+      setRoleState('student');
+      setRolePreference('student');
+      return { isNew: true, student: newStudent };
+    },
+    [students, language]
+  );
+
+  // Delete a student profile
+  const deleteStudent = useCallback(
+    (studentId) => {
+      setStudents((prev) => {
+        const filtered = prev.filter((s) => s.id !== studentId);
+        const nextList = filtered.length > 0 ? filtered : resetAllData();
+        saveStudents(nextList);
+        if (currentStudentId === studentId) {
+          const nextActiveId = nextList[0]?.id || 'student-1';
+          setCurrentStudentIdState(nextActiveId);
+          setActiveStudentId(nextActiveId);
+        }
+        return nextList;
+      });
+    },
+    [currentStudentId]
+  );
 
   // Save teacher override for a student on a specific topic
   const saveTeacherOverride = useCallback(
@@ -146,7 +224,7 @@ export function AppProvider({ children }) {
     [updateSpecificStudent]
   );
 
-  // Record a completed quiz attempt (diagnostic, practice, or test)
+  // Record a completed quiz attempt (diagnostic, practice, or test) with real consistency streak
   const recordQuizResult = useCallback(
     ({ type, topic = 'fractions', score, totalQuestions, correctCount, questionResponses = [], weakConcepts = [] }) => {
       updateStudentData((prev) => {
@@ -197,9 +275,13 @@ export function AppProvider({ children }) {
           newTopicData.testScore = score;
         }
 
+        // Daily consistency streak calculation
+        const streakResult = recordActivityStreak(prev.learningStreak || 0, prev.lastActiveDate);
+
         return {
           ...prev,
-          learningStreak: (prev.learningStreak || 0) + 1,
+          learningStreak: streakResult.learningStreak,
+          lastActiveDate: streakResult.lastActiveDate,
           quizHistory: [newQuizItem, ...existingHistory],
           topicProgress: {
             ...existingTopicProgress,
@@ -211,11 +293,21 @@ export function AppProvider({ children }) {
     [updateStudentData]
   );
 
-  // Reset all data to demo defaults
+  // Reset all data to initial clean state (0% progress, 0 streak)
   const handleResetData = useCallback(() => {
     const defaultData = resetAllData();
     setStudents(defaultData);
     setCurrentStudentIdState('student-1');
+    setActiveStudentId('student-1');
+    setIsResetModalOpen(false);
+  }, []);
+
+  // Load sample evaluator profiles for hackathon evaluators/judges
+  const handleLoadEvaluatorData = useCallback(() => {
+    const evaluatorData = loadEvaluatorSampleData();
+    setStudents(evaluatorData);
+    setCurrentStudentIdState('student-1');
+    setActiveStudentId('student-1');
     setIsResetModalOpen(false);
   }, []);
 
@@ -234,12 +326,17 @@ export function AppProvider({ children }) {
     t,
     updateStudentData,
     updateSpecificStudent,
+    loginOrRegisterStudent,
+    deleteStudent,
     saveTeacherOverride,
     clearTeacherOverride,
     recordQuizResult,
     handleResetData,
+    handleLoadEvaluatorData,
     isResetModalOpen,
-    setIsResetModalOpen
+    setIsResetModalOpen,
+    isLoginModalOpen,
+    setIsLoginModalOpen
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
@@ -252,4 +349,3 @@ export function useApp() {
   }
   return context;
 }
-

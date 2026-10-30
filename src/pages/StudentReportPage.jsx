@@ -66,8 +66,10 @@ export default function StudentReportPage() {
           <div className="header-brand">
             <span className="brand-icon">📐</span>
             <div>
-              <h2>SikshaPath — शिक्षापथ</h2>
-              <p className="brand-tagline">Learn at Your Pace. Grow with Guidance.</p>
+              <h2>{language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}</h2>
+              <p className="brand-tagline">
+                {language === 'hi' ? 'अपनी गति से सीखें। मार्गदर्शन के साथ बढ़ें।' : 'Learn at Your Pace. Grow with Guidance.'}
+              </p>
             </div>
           </div>
           <div className="report-meta-box">
@@ -159,9 +161,15 @@ export default function StudentReportPage() {
             </thead>
             <tbody>
               {conceptsList.map((c) => {
+                const hasTested = topicProgress.diagnosticScore != null || conceptMastery[c.id] != null;
                 const score = conceptMastery[c.id] ?? (topicProgress.diagnosticScore || 0);
-                const status =
-                  score >= 80 ? 'Understood' : score >= 50 ? 'Practising' : 'Needs Support';
+                const status = !hasTested
+                  ? (language === 'hi' ? 'जाँच नहीं हुई' : 'Not Checked')
+                  : score >= 80
+                  ? (language === 'hi' ? 'समझ गया' : 'Understood')
+                  : score >= 50
+                  ? (language === 'hi' ? 'अभ्यास जारी' : 'Practising')
+                  : (language === 'hi' ? 'सहयोग आवश्यक' : 'Needs Support');
 
                 return (
                   <tr key={c.id}>
@@ -173,18 +181,18 @@ export default function StudentReportPage() {
                         <div className="table-bar">
                           <div
                             className={`table-fill ${
-                              score >= 80 ? 'high' : score >= 50 ? 'mid' : 'low'
+                              !hasTested ? '' : score >= 80 ? 'high' : score >= 50 ? 'mid' : 'low'
                             }`}
-                            style={{ width: `${score}%` }}
+                            style={{ width: `${hasTested ? score : 0}%` }}
                           />
                         </div>
-                        <span className="score-text">{score}%</span>
+                        <span className="score-text">{hasTested ? `${score}%` : '0%'}</span>
                       </div>
                     </td>
                     <td>
                       <span
                         className={`status-chip ${
-                          score >= 80 ? 'chip-success' : score >= 50 ? 'chip-warning' : 'chip-danger'
+                          !hasTested ? 'chip-neutral' : score >= 80 ? 'chip-success' : score >= 50 ? 'chip-warning' : 'chip-danger'
                         }`}
                       >
                         {status}

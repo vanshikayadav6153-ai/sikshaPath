@@ -21,6 +21,7 @@ export default function Sidebar({ isOpen, onClose }) {
     theme,
     toggleTheme,
     setIsResetModalOpen,
+    setIsLoginModalOpen,
     t
   } = useApp();
 
@@ -48,7 +49,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <div className="sidebar-header">
           <div className="sidebar-brand">
             <span className="brand-icon">📐</span>
-            <span className="brand-title">SikshaPath <span className="brand-hindi">शिक्षापथ</span></span>
+            <span className="brand-title">{language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}</span>
           </div>
           <button
             type="button"
@@ -103,7 +104,7 @@ export default function Sidebar({ isOpen, onClose }) {
         {role === 'student' && (
           <div className="drawer-persona-switcher">
             <small className="drawer-sublabel">
-              {language === 'hi' ? 'छात्र प्रोफाइल बदलें:' : 'Switch Demo Student:'}
+              {language === 'hi' ? 'छात्र खाता बदलें (व्यक्तिगत डेटा):' : 'Switch Student Account:'}
             </small>
             <div className="drawer-persona-chips">
               {students.map((stu) => (
@@ -117,6 +118,18 @@ export default function Sidebar({ isOpen, onClose }) {
                   <span>{stu.name.split(' ')[0]}</span>
                 </button>
               ))}
+              <button
+                type="button"
+                className="drawer-stu-chip"
+                onClick={() => {
+                  onClose();
+                  setIsLoginModalOpen(true);
+                }}
+                style={{ border: '1px dashed var(--primary)', color: 'var(--primary)', fontWeight: 600 }}
+              >
+                <span>➕</span>
+                <span>{language === 'hi' ? 'नया छात्र' : 'New Login'}</span>
+              </button>
             </div>
           </div>
         )}

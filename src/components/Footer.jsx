@@ -24,7 +24,7 @@ export default function Footer() {
             <div className="footer-brand">
               <div className="brand-logo-icon">📐</div>
               <div>
-                <h3>SikshaPath — शिक्षापथ</h3>
+                <h3>{language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}</h3>
                 <p className="footer-brand-tagline">
                   {language === 'hi'
                     ? 'अपनी गति से सीखें। मार्गदर्शन के साथ बढ़ें।'
@@ -238,7 +238,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-copyright">
             <p>
-              &copy; {new Date().getFullYear()} <strong>SikshaPath (शिक्षापथ)</strong>. Built with pride for Indian School Education (Classes 6–10).
+              &copy; {new Date().getFullYear()} <strong>{language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}</strong>. Built with pride for Indian School Education (Classes 6–10).
             </p>
             <p className="footer-sub-copyright">
               Designed to empower teachers, demystify mathematics, and ensure every learner masters core concepts at their own pace.

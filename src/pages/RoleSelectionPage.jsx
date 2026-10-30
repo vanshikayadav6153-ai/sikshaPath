@@ -1,7 +1,12 @@
 /**
- * SikshaPath - Role Selection & Student Profile Page
- * Enables 1-click demo login as Struggling, On-Track, or Advanced learner,
- * switching to Teacher Mode, or customizing/creating a student profile.
+ * SikshaPath - Role Selection & Student Profile Login Page
+ *
+ * Ensures:
+ * 1. First-time student login starts at 0% progress, 0 streak, and 0 activities.
+ * 2. Individual student data is stored separately and persists in localStorage.
+ * 3. Daily consistency streak increments only on consecutive active days.
+ * 4. Easy switching between students or entering Teacher Console.
+ * 5. Optional Evaluator Demo Profiles tab for judges to inspect edge-case mock records.
  */
 
 import React, { useState } from 'react';
@@ -15,29 +20,61 @@ export default function RoleSelectionPage() {
     currentStudent,
     currentStudentId,
     setCurrentStudentId,
+    loginOrRegisterStudent,
+    deleteStudent,
+    handleLoadEvaluatorData,
+    handleResetData,
     setRole,
     language,
     setLanguage,
-    updateStudentData,
     t
   } = useApp();
 
   const navigate = useNavigate();
 
-  // Custom profile form state
-  const [activeTab, setActiveTab] = useState('demo'); // 'demo' | 'customize'
-  const [customName, setCustomName] = useState(currentStudent?.name || '');
-  const [customClass, setCustomClass] = useState(currentStudent?.class || 6);
-  const [customLang, setCustomLang] = useState(currentStudent?.preferredLanguage || language);
-  const [customSubject, setCustomSubject] = useState(currentStudent?.subject || 'mathematics');
-  const [customTopic, setCustomTopic] = useState(currentStudent?.currentTopic || 'fractions');
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  // Active view tab: 'login' | 'teacher' | 'evaluator'
+  const [activeTab, setActiveTab] = useState('login');
 
-  // Available topics for selected subject & class
-  const classTopics =
-    subjects[customSubject]?.classes?.[customClass]?.topics || [];
+  // Login form state
+  const [loginName, setLoginName] = useState('');
+  const [loginClass, setLoginClass] = useState(6);
+  const [loginLang, setLoginLang] = useState(language);
+  const [loginSubject, setLoginSubject] = useState('mathematics');
+  const [loginSuccessMsg, setLoginSuccessMsg] = useState(null);
 
-  const handleSelectDemoStudent = (studentId) => {
+  const handleQuickLogin = (e) => {
+    e.preventDefault();
+    if (!loginName.trim()) return;
+
+    const res = loginOrRegisterStudent({
+      name: loginName.trim(),
+      classGrade: loginClass,
+      language: loginLang,
+      subject: loginSubject
+    });
+
+    if (res) {
+      if (res.isNew) {
+        setLoginSuccessMsg(
+          language === 'hi'
+            ? `✨ नया छात्र खाता निर्मित! ${res.student.name} की शुरुआत 0% प्रगति और 0 स्ट्रीक से हुई है।`
+            : `✨ New Student Account created! ${res.student.name} starts with 0% progress and 0 streak.`
+        );
+      } else {
+        setLoginSuccessMsg(
+          language === 'hi'
+            ? `👋 स्वागत है, ${res.student.name}! आपका सहेजा गया डेटा लोड हो गया।`
+            : `👋 Welcome back, ${res.student.name}! Loading your saved progress.`
+        );
+      }
+
+      setTimeout(() => {
+        navigate('/student/dashboard');
+      }, 700);
+    }
+  };
+
+  const handleSelectExistingStudent = (studentId) => {
     setRole('student');
     setCurrentStudentId(studentId);
     navigate('/student/dashboard');
@@ -48,44 +85,30 @@ export default function RoleSelectionPage() {
     navigate('/teacher');
   };
 
-  const handleSaveCustomProfile = (e) => {
-    e.preventDefault();
-    if (!customName.trim()) return;
-
-    setLanguage(customLang);
-
-    updateStudentData({
-      name: customName.trim(),
-      class: Number(customClass),
-      preferredLanguage: customLang,
-      subject: customSubject,
-      currentTopic: customTopic
-    });
-
-    setSaveSuccess(true);
-    setRole('student');
-    navigate('/student/dashboard');
-  };
-
   return (
     <div className="role-selection-page">
       <div className="role-page-header text-center">
         <div className="role-brand-badge">
-          <span>📐 SikshaPath — शिक्षापथ</span>
+          <span>📐 {language === 'hi' ? 'शिक्षापथ' : 'SikshaPath'}</span>
         </div>
         <h1 className="role-page-title">
           {language === 'hi'
-            ? 'भूमिका एवं प्रोफ़ाइल चयन'
-            : 'Select Your Learning Role & Profile'}
+            ? 'छात्र लॉगिन एवं भूमिका चयन'
+            : 'Student Login & Learning Role Selection'}
         </h1>
         <p className="role-page-desc">
           {language === 'hi'
-            ? 'डेमो खातों में से एक चुनें या अपनी पसंद के अनुसार छात्र प्रोफ़ाइल बनाएँ।'
-            : 'Experience the adaptive platform as a student (Struggling, On-Track, Advanced) or enter the Teacher Console.'}
+            ? 'अपने नाम से लॉगिन करें, पूर्व-सहेजा गया प्रोफाइल चुनें, या शिक्षक पोर्टल में प्रवेश करें।'
+            : 'Login with your individual student profile, pick a saved account, or enter the Teacher Console.'}
         </p>
 
-        <div className="demo-notice-pill">
-          🔒 <strong>{t('demoDataNotice')}</strong>
+        {/* Zero Progress Guarantee Pill */}
+        <div className="demo-notice-pill" style={{ background: 'rgba(59, 130, 246, 0.15)', borderColor: 'rgba(59, 130, 246, 0.3)' }}>
+          🔒 <strong>
+            {language === 'hi'
+              ? 'शून्य शुरुआत नियम: पहली बार लॉगिन करने पर ग्राफ़ 0% रहेगा। केवल वास्तविक अध्ययन व निरंतरता से प्रगति और स्ट्रीक बढ़ेगी।'
+              : 'Zero-Start Rule: First-time login starts at strictly 0% progress and 0 streak. Graph grows only through actual learning.'}
+          </strong>
         </div>
       </div>
 
@@ -93,106 +116,234 @@ export default function RoleSelectionPage() {
       <div className="role-nav-tabs">
         <button
           type="button"
-          className={`role-nav-tab ${activeTab === 'demo' ? 'active' : ''}`}
-          onClick={() => setActiveTab('demo')}
+          className={`role-nav-tab ${activeTab === 'login' ? 'active' : ''}`}
+          onClick={() => setActiveTab('login')}
         >
-          🎓 {language === 'hi' ? 'डेमो प्रोफाइल (त्वरित चयन)' : 'Demo Personas (1-Click Login)'}
+          🎓 {language === 'hi' ? 'छात्र लॉगिन / प्रोफाइल' : 'Student Login & Profiles'}
         </button>
         <button
           type="button"
-          className={`role-nav-tab ${activeTab === 'customize' ? 'active' : ''}`}
-          onClick={() => setActiveTab('customize')}
+          className={`role-nav-tab ${activeTab === 'teacher' ? 'active' : ''}`}
+          onClick={() => setActiveTab('teacher')}
         >
-          ✏️ {language === 'hi' ? 'प्रोफ़ाइल कस्टमाइज़ करें' : 'Customize Student Profile'}
+          👩‍🏫 {language === 'hi' ? 'शिक्षक पोर्टल' : 'Teacher Console'}
+        </button>
+        <button
+          type="button"
+          className={`role-nav-tab ${activeTab === 'evaluator' ? 'active' : ''}`}
+          onClick={() => setActiveTab('evaluator')}
+        >
+          🧪 {language === 'hi' ? 'मूल्यांकनकर्ता डेमो (Judges)' : 'Evaluator Demo Data'}
         </button>
       </div>
 
-      {/* Tab 1: Demo Personas */}
-      {activeTab === 'demo' && (
-        <div className="demo-personas-section">
-          <div className="persona-selection-grid">
-            {students.map((stu) => {
-              const isSelected = stu.id === currentStudentId;
-              const isStruggling = stu.learningPersona === 'struggling';
-              const isOnTrack = stu.learningPersona === 'on-track';
+      {/* Tab 1: Student Login & Saved Profiles */}
+      {activeTab === 'login' && (
+        <div className="student-login-section">
+          {/* Quick Login / Create Account Box */}
+          <div className="customize-profile-card" style={{ marginBottom: '2.5rem' }}>
+            <div className="card-header-simple">
+              <h2>
+                {language === 'hi'
+                  ? '👤 नया छात्र लॉगिन / खाता बनाएँ'
+                  : '👤 Student Login / Create Profile'}
+              </h2>
+              <p>
+                {language === 'hi'
+                  ? 'अपना नाम और कक्षा दर्ज करें। यदि यह आपका पहला लॉगिन है, तो ग्राफ़ 0% से शुरू होगा।'
+                  : 'Enter your name and class. If logging in for the first time, your graph and streak will start at 0%.'}
+              </p>
+            </div>
 
-              return (
-                <div
-                  key={stu.id}
-                  className={`persona-select-card ${isSelected ? 'active-selection' : ''} ${
-                    stu.learningPersona
-                  }`}
-                  onClick={() => handleSelectDemoStudent(stu.id)}
-                >
-                  <div className="select-card-top">
-                    <span className="card-avatar">{stu.avatar}</span>
-                    <span className={`persona-type-badge ${stu.learningPersona}`}>
-                      {language === 'hi' ? stu.personaLabelHi : stu.personaLabel}
-                    </span>
-                  </div>
+            {loginSuccessMsg && (
+              <div className="alert-success-banner" style={{ marginBottom: '1.25rem' }}>
+                {loginSuccessMsg}
+              </div>
+            )}
 
-                  <h3 className="card-name">{stu.name}</h3>
-                  <p className="card-meta">
-                    {language === 'hi' ? 'कक्षा' : 'Class'} {stu.class} &middot;{' '}
-                    {stu.subject === 'mathematics'
-                      ? language === 'hi' ? 'गणित' : 'Mathematics'
-                      : 'Science'}{' '}
-                    &middot; {stu.currentTopic}
-                  </p>
+            <form onSubmit={handleQuickLogin} className="profile-form">
+              <div className="form-group">
+                <label className="form-label">
+                  {language === 'hi' ? 'छात्र का पूरा नाम (Full Name):' : 'Student Full Name:'}
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="form-input"
+                  placeholder={language === 'hi' ? 'उदा. राहुल सिंह / Aarav' : 'e.g. Rahul Singh / Aarav'}
+                  value={loginName}
+                  onChange={(e) => setLoginName(e.target.value)}
+                />
+              </div>
 
-                  <p className="card-desc">
-                    {language === 'hi' ? stu.personaDescriptionHi : stu.personaDescription}
-                  </p>
+              <div className="form-row">
+                <div className="form-group flex-1">
+                  <label className="form-label">
+                    {language === 'hi' ? 'कक्षा (Class 6–10):' : 'Class Grade Level:'}
+                  </label>
+                  <select
+                    className="form-select"
+                    value={loginClass}
+                    onChange={(e) => setLoginClass(Number(e.target.value))}
+                  >
+                    <option value={6}>Class 6 (कक्षा 6)</option>
+                    <option value={7}>Class 7 (कक्षा 7)</option>
+                    <option value={8}>Class 8 (कक्षा 8)</option>
+                    <option value={9}>Class 9 (कक्षा 9)</option>
+                    <option value={10}>Class 10 (कक्षा 10)</option>
+                  </select>
+                </div>
 
-                  <div className="card-kpi-bar">
-                    <div className="kpi-item">
-                      <span className="kpi-sub">
-                        {language === 'hi' ? 'डायग्नोस्टिक' : 'Diagnostic'}:
-                      </span>
-                      <strong
-                        className={`kpi-score ${
-                          isStruggling ? 'low' : isOnTrack ? 'mid' : 'high'
-                        }`}
-                      >
-                        {stu.topicProgress?.fractions?.diagnosticScore || 0}%
-                      </strong>
-                    </div>
-
-                    <div className="kpi-item">
-                      <span className="kpi-sub">
-                        {language === 'hi' ? 'स्ट्रीक' : 'Streak'}:
-                      </span>
-                      <strong>{stu.learningStreak} days</strong>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-block"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSelectDemoStudent(stu.id);
+                <div className="form-group flex-1">
+                  <label className="form-label">
+                    {language === 'hi' ? 'पसंदीदा भाषा (Language):' : 'Preferred Language:'}
+                  </label>
+                  <select
+                    className="form-select"
+                    value={loginLang}
+                    onChange={(e) => {
+                      setLoginLang(e.target.value);
+                      setLanguage(e.target.value);
                     }}
                   >
-                    {language === 'hi'
-                      ? `${stu.name} के रूप में प्रवेश करें`
-                      : `Enter as ${stu.name}`} &rarr;
-                  </button>
+                    <option value="en">English (अंग्रेज़ी)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                  </select>
                 </div>
-              );
-            })}
+              </div>
+
+              <div className="profile-form-actions">
+                <button type="submit" className="btn btn-primary btn-lg">
+                  🚀 {language === 'hi' ? 'लॉगिन करें एवं सीखना शुरू करें' : 'Login & Start Learning'} &rarr;
+                </button>
+              </div>
+            </form>
           </div>
 
-          {/* Teacher Console Entry Card */}
-          <div className="teacher-entry-card" onClick={handleSelectTeacher}>
+          {/* Section: Saved Profiles on this Device */}
+          <div className="section-block">
+            <h2 className="section-title">
+              👥 {language === 'hi' ? 'इस डिवाइस पर सहेजे गए छात्र प्रोफाइल:' : 'Saved Student Profiles on this Device:'}
+            </h2>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '1.25rem', fontSize: '0.9rem' }}>
+              {language === 'hi'
+                ? 'प्रत्येक छात्र का व्यक्तिगत डेटा, क्विज़ अंक और स्ट्रीक अलग-अलग सुरक्षित है।'
+                : 'Each student has isolated progress data, quiz scores, and consistency streaks.'}
+            </p>
+
+            <div className="persona-selection-grid">
+              {students.map((stu) => {
+                const isSelected = stu.id === currentStudentId;
+                const diagScore = stu.topicProgress?.fractions?.diagnosticScore;
+                const streak = stu.learningStreak || 0;
+                const quizCount = (stu.quizHistory || []).length;
+
+                return (
+                  <div
+                    key={stu.id}
+                    className={`persona-select-card ${isSelected ? 'active-selection' : ''}`}
+                    onClick={() => handleSelectExistingStudent(stu.id)}
+                  >
+                    <div className="select-card-top">
+                      <span className="card-avatar">{stu.avatar || '👤'}</span>
+                      <span className="persona-type-badge on-track">
+                        Class {stu.class}
+                      </span>
+                    </div>
+
+                    <h3 className="card-name">{stu.name}</h3>
+                    <p className="card-meta">
+                      {stu.subject === 'mathematics'
+                        ? language === 'hi' ? 'गणित' : 'Mathematics'
+                        : 'Science'}{' '}
+                      &middot; NCERT Class {stu.class}
+                    </p>
+
+                    <p className="card-desc">
+                      {language === 'hi' ? stu.personaDescriptionHi : stu.personaDescription}
+                    </p>
+
+                    <div className="card-kpi-bar">
+                      <div className="kpi-item">
+                        <span className="kpi-sub">
+                          {language === 'hi' ? 'डायग्नोस्टिक' : 'Diagnostic'}:
+                        </span>
+                        <strong className="kpi-score mid">
+                          {diagScore != null ? `${diagScore}%` : '0%'}
+                        </strong>
+                      </div>
+
+                      <div className="kpi-item">
+                        <span className="kpi-sub">
+                          {language === 'hi' ? 'स्ट्रीक' : 'Streak'}:
+                        </span>
+                        <strong>🔥 {streak} {language === 'hi' ? 'दिन' : 'days'}</strong>
+                      </div>
+
+                      <div className="kpi-item">
+                        <span className="kpi-sub">
+                          {language === 'hi' ? 'क्विज़' : 'Quizzes'}:
+                        </span>
+                        <strong>{quizCount}</strong>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        style={{ flex: 1 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectExistingStudent(stu.id);
+                        }}
+                      >
+                        {isSelected
+                          ? language === 'hi' ? '✓ सक्रिय प्रोफ़ाइल' : '✓ Active Profile'
+                          : language === 'hi' ? 'प्रवेश करें &rarr;' : 'Enter &rarr;'}
+                      </button>
+
+                      {students.length > 1 && (
+                        <button
+                          type="button"
+                          className="btn btn-outline"
+                          style={{ padding: '0.4rem 0.6rem' }}
+                          title="Delete profile"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (window.confirm(`Delete profile for ${stu.name}?`)) {
+                              deleteStudent(stu.id);
+                            }
+                          }}
+                        >
+                          🗑️
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 2: Teacher Portal Entry */}
+      {activeTab === 'teacher' && (
+        <div className="teacher-section-wrapper">
+          <div className="teacher-entry-card" onClick={handleSelectTeacher} style={{ cursor: 'pointer' }}>
             <div className="teacher-entry-content">
               <span className="teacher-entry-icon">👩‍🏫</span>
               <div>
-                <h3>{language === 'hi' ? 'शिक्षक पोर्टल में प्रवेश करें' : 'Enter as Teacher (Educator Console)'}</h3>
+                <h3>
+                  {language === 'hi'
+                    ? 'शिक्षक पोर्टल में प्रवेश करें (Educator Console)'
+                    : 'Enter as Teacher (Educator Console)'}
+                </h3>
                 <p>
                   {language === 'hi'
                     ? 'पूरी कक्षा की प्रगति देखें, कमजोर संकल्पनाओं की पहचान करें और सिफारिशों को ओवरराइड करें।'
-                    : 'Inspect whole-class analytics, view concept mastery matrices, and exercise pedagogical control.'}
+                    : 'Inspect whole-class analytics, view concept mastery matrices, and exercise pedagogical control over AI recommendations.'}
                 </p>
               </div>
             </div>
@@ -210,140 +361,71 @@ export default function RoleSelectionPage() {
         </div>
       )}
 
-      {/* Tab 2: Customize / Edit Student Profile */}
-      {activeTab === 'customize' && (
+      {/* Tab 3: Evaluator Demo Data for Hackathon Judges */}
+      {activeTab === 'evaluator' && (
         <div className="customize-profile-card">
           <div className="card-header-simple">
-            <h2>{language === 'hi' ? 'छात्र प्रोफ़ाइल विवरण' : 'Student Profile Configuration'}</h2>
+            <h2>
+              🧪 {language === 'hi' ? 'मूल्यांकनकर्ता / निर्णायक डेमो डेटा' : 'Evaluator Demo Data for Judges'}
+            </h2>
             <p>
               {language === 'hi'
-                ? 'कक्षा 6 से 10, पसंदीदा भाषा और विषय को आवश्यकतानुसार सेट करें।'
-                : 'Configure student grade level (Classes 6–10), preferred language, subject, and topic.'}
+                ? 'यदि निर्णायक बिना परीक्षा दिए विभिन्न शिक्षार्थी श्रेणियों (Struggling, On-Track, Advanced) का परीक्षण करना चाहते हैं:'
+                : 'For hackathon judges and reviewers who want to immediately test edge-case personas (Struggling, On-Track, Advanced) without taking live tests.'}
             </p>
           </div>
 
-          <form onSubmit={handleSaveCustomProfile} className="profile-form">
-            <div className="form-group">
-              <label className="form-label">
-                {language === 'hi' ? 'छात्र का नाम (Student Name):' : 'Student Full Name:'}
-              </label>
-              <input
-                type="text"
-                required
-                className="form-input"
-                value={customName}
-                onChange={(e) => setCustomName(e.target.value)}
-                placeholder="e.g. Ananya Sen"
-              />
-            </div>
+          <div
+            style={{
+              padding: '1rem',
+              borderRadius: '8px',
+              background: 'rgba(234, 179, 8, 0.1)',
+              border: '1px solid rgba(234, 179, 8, 0.25)',
+              marginBottom: '1.5rem',
+              fontSize: '0.9rem'
+            }}
+          >
+            ⚠️ <strong>{language === 'hi' ? 'ध्यान दें:' : 'Notice:'}</strong>{' '}
+            {language === 'hi'
+              ? 'यह विकल्प नमूना ऐतिहासिक डेटा लोड करता है। वास्तविक छात्रों के लिए डिफ़ॉल्ट रूप से 0% से शुरुआत होती है।'
+              : 'This option loads pre-populated historical test records for evaluator preview. By default, real student logins strictly start at 0%.'}
+          </div>
 
-            <div className="form-row">
-              <div className="form-group flex-1">
-                <label className="form-label">
-                  {language === 'hi' ? 'कक्षा (Class 6–10):' : 'Class Grade Level:'}
-                </label>
-                <select
-                  className="form-select"
-                  value={customClass}
-                  onChange={(e) => {
-                    const cls = Number(e.target.value);
-                    setCustomClass(cls);
-                    const newTopics = subjects[customSubject]?.classes?.[cls]?.topics || [];
-                    if (newTopics.length > 0) {
-                      setCustomTopic(newTopics[0].id);
-                    }
-                  }}
-                >
-                  <option value={6}>Class 6 (कक्षा 6)</option>
-                  <option value={7}>Class 7 (कक्षा 7)</option>
-                  <option value={8}>Class 8 (कक्षा 8)</option>
-                  <option value={9}>Class 9 (कक्षा 9)</option>
-                  <option value={10}>Class 10 (कक्षा 10)</option>
-                </select>
-              </div>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={() => {
+                handleLoadEvaluatorData();
+                alert(
+                  language === 'hi'
+                    ? 'मूल्यांकन नमूना डेटा सफलतापूर्वक लोड हो गया!'
+                    : 'Evaluator sample profiles loaded successfully!'
+                );
+                navigate('/student/dashboard');
+              }}
+            >
+              📥 {language === 'hi' ? 'मूल्यांकन नमूना डेटा लोड करें' : 'Load Sample Evaluator Profiles'}
+            </button>
 
-              <div className="form-group flex-1">
-                <label className="form-label">
-                  {language === 'hi' ? 'पसंदीदा भाषा (Preferred Language):' : 'Preferred Language:'}
-                </label>
-                <select
-                  className="form-select"
-                  value={customLang}
-                  onChange={(e) => setCustomLang(e.target.value)}
-                >
-                  <option value="en">English</option>
-                  <option value="hi">हिन्दी (Hindi)</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group flex-1">
-                <label className="form-label">
-                  {language === 'hi' ? 'विषय (Subject):' : 'Subject:'}
-                </label>
-                <select
-                  className="form-select"
-                  value={customSubject}
-                  onChange={(e) => {
-                    const sub = e.target.value;
-                    setCustomSubject(sub);
-                    const newTopics = subjects[sub]?.classes?.[customClass]?.topics || [];
-                    if (newTopics.length > 0) {
-                      setCustomTopic(newTopics[0].id);
-                    }
-                  }}
-                >
-                  <option value="mathematics">
-                    {language === 'hi' ? 'गणित (Mathematics)' : 'Mathematics'}
-                  </option>
-                  <option value="science">
-                    {language === 'hi' ? 'विज्ञान (Science)' : 'Science'}
-                  </option>
-                </select>
-              </div>
-
-              <div className="form-group flex-1">
-                <label className="form-label">
-                  {language === 'hi' ? 'वर्तमान विषय (Current Topic):' : 'Current Topic:'}
-                </label>
-                <select
-                  className="form-select"
-                  value={customTopic}
-                  onChange={(e) => setCustomTopic(e.target.value)}
-                >
-                  {classTopics.map((top) => (
-                    <option key={top.id} value={top.id}>
-                      {language === 'hi' ? top.nameHi : top.name}{' '}
-                      {top.fullyImplemented ? '✓ (Active)' : '(Coming Soon)'}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {saveSuccess && (
-              <div className="alert-success-banner">
-                ✓ {language === 'hi' ? 'प्रोफ़ाइल सुरक्षित हो गई! डैशबोर्ड लोड हो रहा है...' : 'Profile updated successfully! Redirecting...'}
-              </div>
-            )}
-
-            <div className="profile-form-actions">
-              <button
-                type="button"
-                className="btn btn-outline"
-                onClick={() => setActiveTab('demo')}
-              >
-                {t('cancel')}
-              </button>
-              <button type="submit" className="btn btn-primary btn-lg">
-                💾 {language === 'hi' ? 'प्रोफ़ाइल सहेजें एवं आगे बढ़ें' : 'Save Profile & Start Learning'}
-              </button>
-            </div>
-          </form>
+            <button
+              type="button"
+              className="btn btn-outline btn-lg"
+              onClick={() => {
+                handleResetData();
+                alert(
+                  language === 'hi'
+                    ? 'सभी डेटा साफ़! छात्र 0% प्रगति से शुरू होंगे।'
+                    : 'All data reset! Students now start fresh with 0% progress.'
+                );
+                navigate('/student/dashboard');
+              }}
+            >
+              🔄 {language === 'hi' ? 'शून्य स्थिति में रीसेट करें (0%)' : 'Reset to Clean Zero State (0%)'}
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 }
-

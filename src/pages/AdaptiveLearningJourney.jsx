@@ -204,6 +204,23 @@ export default function AdaptiveLearningJourney() {
   };
 
   const handleNextPractice = () => {
+    if (practiceIndex + 1 >= practiceQuestions.length) {
+      // Save practice attempt to student progress & consistency streak
+      const total = practiceStats.total || 1;
+      const correct = practiceStats.correct;
+      const score = Math.round((correct / total) * 100);
+      recordQuizResult({
+        type: 'practice',
+        topic: activeTopicId,
+        score,
+        totalQuestions: total,
+        correctCount: correct,
+        questionResponses: [],
+        weakConcepts: []
+      });
+      setStage('test');
+      return;
+    }
     setPracticeAnswer(null);
     setCheckedAnswer(false);
     setShowHint(false);

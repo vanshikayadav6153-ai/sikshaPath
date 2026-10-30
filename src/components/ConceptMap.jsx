@@ -298,7 +298,7 @@ export default function ConceptMap({
     if (!hasDiag && conceptMastery[key] == null) {
       return { state: 'not-checked', score: 0 };
     }
-    const score = conceptMastery[key] ?? 50;
+    const score = conceptMastery[key] ?? (hasDiag ? (topicProgress.diagnosticScore || 0) : 0);
     if (score >= 80) return { state: 'understood', score };
     return { state: 'practising', score };
   };

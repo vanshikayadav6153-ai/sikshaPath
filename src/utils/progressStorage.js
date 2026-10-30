@@ -4,7 +4,7 @@
  * Ensures data survives page reloads and offers clean reset functionality.
  */
 
-import initialStudents from '../data/demoStudents';
+import initialStudents, { mockEvaluatorStudents } from '../data/demoStudents';
 
 const STORAGE_KEY = 'sikshapath_app_state_v1';
 const LANGUAGE_KEY = 'sikshapath_language_pref';
@@ -142,7 +142,7 @@ export function setThemePreference(theme) {
 }
 
 /**
- * Reset all data to initial demo data
+ * Reset all data to initial clean student state (0% progress, 0 streak)
  */
 export function resetAllData() {
   try {
@@ -153,6 +153,19 @@ export function resetAllData() {
   } catch (e) {
     console.error('Error resetting data:', e);
     return initialStudents;
+  }
+}
+
+/**
+ * Loads mock evaluator profiles with historical data for judges/evaluators
+ */
+export function loadEvaluatorSampleData() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(mockEvaluatorStudents));
+    return mockEvaluatorStudents;
+  } catch (e) {
+    console.error('Error loading evaluator data:', e);
+    return mockEvaluatorStudents;
   }
 }
 

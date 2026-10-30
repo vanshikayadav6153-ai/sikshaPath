@@ -17,7 +17,7 @@ const tx = (obj, language) => {
 };
 
 export default function StudentDashboard() {
-  const { currentStudent, t, language, updateStudentData } = useApp();
+  const { currentStudent, t, language, updateStudentData, setIsLoginModalOpen } = useApp();
   const navigate = useNavigate();
 
   // --------------- derived data ---------------
@@ -154,16 +154,29 @@ export default function StudentDashboard() {
   return (
     <div className="dashboard-container">
       {/* ======= Welcome Header ======= */}
-      <header className="dashboard-header">
+      <header className="dashboard-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div className="welcome-text">
           <h1>
             {language === 'hi' ? 'नमस्ते' : 'Hello'}, {currentStudent.name}! 👋
           </h1>
           <p className="student-meta">
             {language === 'hi' ? 'कक्षा' : 'Class'} {classNum} &middot;{' '}
-            {tx(subjectData, language)}
+            {tx(subjectData, language)} &middot;{' '}
+            <span style={{ color: 'var(--text-muted)' }}>
+              {language === 'hi' ? 'व्यक्तिगत प्रगति रिकॉर्ड' : 'Individual Student Record'}
+            </span>
           </p>
         </div>
+
+        <button
+          type="button"
+          className="btn btn-outline btn-sm"
+          onClick={() => setIsLoginModalOpen(true)}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+        >
+          <span>👤</span>
+          <span>{language === 'hi' ? 'खाता बदलें / नया छात्र' : 'Switch / Login Student'}</span>
+        </button>
       </header>
 
       {/* ======= Stats Row ======= */}

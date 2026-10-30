@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ResetConfirmModal from './components/ResetConfirmModal';
+import StudentLoginModal from './components/StudentLoginModal';
 import AITutorChat from './components/AITutorChat';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -69,6 +70,7 @@ function AppContent() {
       </main>
 
       <Footer />
+      <StudentLoginModal />
       <ResetConfirmModal />
       <AITutorChat />
     </div>
