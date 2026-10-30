@@ -67,14 +67,16 @@ export default function Sidebar({ isOpen, onClose }) {
             className={`drawer-role-btn ${role === 'student' ? 'active' : ''}`}
             onClick={() => handleRoleChange('student')}
           >
-            🎓 {language === 'hi' ? 'छात्र मोड' : 'Student Mode'}
+            <span className="role-tab-icon">🎓</span>
+            <span className="role-tab-text">{language === 'hi' ? 'छात्र मोड' : 'Student Mode'}</span>
           </button>
           <button
             type="button"
             className={`drawer-role-btn ${role === 'teacher' ? 'active' : ''}`}
             onClick={() => handleRoleChange('teacher')}
           >
-            👩‍🏫 {language === 'hi' ? 'शिक्षक पोर्टल' : 'Teacher Portal'}
+            <span className="role-tab-icon">👩‍🏫</span>
+            <span className="role-tab-text">{language === 'hi' ? 'शिक्षक पोर्टल' : 'Teacher Portal'}</span>
           </button>
         </div>
 

@@ -220,19 +220,21 @@ a {
 }
 
 .navbar-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1560px;
   margin: 0 auto;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
+  flex-shrink: 0;
 }
 
 .mobile-menu-btn {
@@ -247,45 +249,59 @@ a {
 .brand-logo-link {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   color: inherit;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-logo-icon {
   font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
   border: 1px solid #C7D2FE;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .brand-text-group {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-width: max-content;
+  flex-shrink: 0;
 }
 
 .brand-name {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  display: flex;
+  align-items: baseline;
+  line-height: 1.2;
 }
 
 .brand-hindi {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--primary);
   font-weight: 600;
-  margin-left: 0.25rem;
+  margin-left: 0.3rem;
+  white-space: nowrap;
 }
 
 .brand-tagline {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 500;
+  white-space: nowrap !important;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
 }
 
 .navbar-center-nav {
@@ -459,23 +475,49 @@ a {
 
 /* Role switch tabs */
 .role-switch-group {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   background-color: #F1F5F9;
   border-radius: var(--radius-full);
-  padding: 0.2rem;
+  padding: 0.25rem;
   border: 1px solid var(--border);
+  gap: 0.25rem;
+  flex-shrink: 0;
 }
 
 .role-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row !important;
+  gap: 0.45rem;
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-muted);
-  padding: 0.35rem 0.75rem;
+  padding: 0.38rem 0.85rem;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap !important;
+  line-height: 1;
+}
+
+.role-tab .role-tab-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.role-tab .role-tab-text {
+  font-size: 0.82rem;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .role-tab.active {
@@ -796,7 +838,15 @@ a {
     display: none;
   }
   .brand-tagline {
-    display: none;
+    font-size: 0.7rem;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-tagline {
+    font-size: 0.68rem;
+    white-space: nowrap !important;
   }
 }
 
@@ -1241,6 +1291,11 @@ html, body {
 
 .drawer-role-btn {
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row !important;
+  gap: 0.45rem;
   background: none;
   border: none;
   padding: 0.55rem 0.65rem;
@@ -1250,6 +1305,20 @@ html, body {
   color: #94A3B8;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap !important;
+}
+
+.drawer-role-btn .role-tab-icon {
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.drawer-role-btn .role-tab-text {
+  font-size: 0.78rem;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -1396,7 +1465,8 @@ html, body {
   }
 
   .brand-tagline {
-    display: none !important;
+    font-size: 0.68rem;
+    white-space: nowrap !important;
   }
 
   .navbar-right {

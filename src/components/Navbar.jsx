@@ -201,14 +201,16 @@ export default function Navbar({ onToggleSidebar }) {
               className={`role-tab ${role === 'student' ? 'active' : ''}`}
               onClick={() => handleRoleToggle('student')}
             >
-              🎓 {language === 'hi' ? 'छात्र' : 'Student'}
+              <span className="role-tab-icon">🎓</span>
+              <span className="role-tab-text">{language === 'hi' ? 'छात्र' : 'Student'}</span>
             </button>
             <button
               type="button"
               className={`role-tab ${role === 'teacher' ? 'active' : ''}`}
               onClick={() => handleRoleToggle('teacher')}
             >
-              👩‍🏫 {language === 'hi' ? 'शिक्षक' : 'Teacher'}
+              <span className="role-tab-icon">👩‍🏫</span>
+              <span className="role-tab-text">{language === 'hi' ? 'शिक्षक' : 'Teacher'}</span>
             </button>
           </div>
 
