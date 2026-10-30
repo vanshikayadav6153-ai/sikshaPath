@@ -254,7 +254,7 @@
 }
 
 .hero-container {
-  max-width: 900px;
+  max-width: 1140px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -301,7 +301,7 @@
   font-size: 1.2rem;
   color: #94A3B8;
   line-height: 1.65;
-  max-width: 720px;
+  max-width: 860px;
 }
 
 .hero-cta-group {
@@ -367,7 +367,7 @@
 
 .section-header.text-center {
   text-align: center;
-  max-width: 750px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -404,7 +404,7 @@
 /* INTERACTIVE PROGRESS TRACKING DEMO WIDGET */
 /* ============================================================ */
 .clay-demo-widget {
-  max-width: 1040px;
+  max-width: 1380px;
   margin: 0 auto;
   width: 100%;
   border-color: rgba(0, 240, 255, 0.3);

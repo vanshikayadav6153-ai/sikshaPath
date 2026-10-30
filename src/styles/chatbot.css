@@ -1,0 +1,510 @@
+/**
+ * SikshaPath - AI Math Chatbot (शिक्षा-मित्र / SikshaMitra) Styles
+ * Premium floating AI assistant widget with glassmorphism & dark/light theme support
+ */
+
+/* Floating Launcher Button */
+.siksha-chatbot-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem 0.75rem 0.85rem;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 24px rgba(79, 70, 229, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+
+.siksha-chatbot-launcher:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 12px 32px rgba(79, 70, 229, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.siksha-chatbot-launcher:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.launcher-avatar-wrap {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.launcher-online-dot {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background-color: #10B981;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.85; }
+}
+
+.launcher-text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.launcher-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+}
+
+.launcher-subtitle {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+/* Chat Window Modal / Popover */
+.siksha-chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 410px;
+  max-width: calc(100vw - 32px);
+  height: 580px;
+  max-height: calc(100vh - 120px);
+  background: #0F172A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 48px rgba(0, 0, 0, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10000;
+  animation: chatWindowPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes chatWindowPop {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Light Theme overrides */
+body.theme-light .siksha-chat-window {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+  box-shadow: 
+    0 20px 40px rgba(15, 23, 42, 0.15),
+    0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+/* Chat Header */
+.siksha-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1.15rem;
+  background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+body.theme-light .siksha-chat-header {
+  background: linear-gradient(135deg, #4338CA 0%, #6366F1 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chat-header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.chat-header-text h3 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  margin: 0;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.chat-header-text p {
+  font-size: 0.72rem;
+  color: #A5B4FC;
+  margin: 2px 0 0;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.header-status-badge {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.chat-action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #E2E8F0;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.18s ease;
+}
+
+.chat-action-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+/* Chat Body */
+.siksha-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+.siksha-chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+.siksha-chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+.siksha-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+body.theme-light .siksha-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* Message Bubble */
+.chat-message-row {
+  display: flex;
+  gap: 0.65rem;
+  max-width: 90%;
+}
+
+.chat-message-row.bot {
+  align-self: flex-start;
+}
+
+.chat-message-row.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.chat-bubble-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.chat-bubble-content {
+  padding: 0.75rem 0.95rem;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.chat-message-row.bot .chat-bubble-content {
+  background: #1E293B;
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-left-radius: 4px;
+}
+
+body.theme-light .chat-message-row.bot .chat-bubble-content {
+  background: #F1F5F9;
+  color: #1E293B;
+  border: 1px solid #E2E8F0;
+}
+
+.chat-message-row.user .chat-bubble-content {
+  background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+  color: #FFFFFF;
+  border-top-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+}
+
+.chat-time-tag {
+  display: block;
+  font-size: 0.68rem;
+  margin-top: 4px;
+  opacity: 0.65;
+  text-align: right;
+}
+
+/* Formatted Text Inside Chat Bubbles */
+.chat-bubble-content strong {
+  color: #38BDF8;
+  font-weight: 700;
+}
+
+body.theme-light .chat-bubble-content strong {
+  color: #4338CA;
+}
+
+.chat-bubble-content code {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-family: monospace;
+  color: #F472B6;
+}
+
+body.theme-light .chat-bubble-content code {
+  background: rgba(0, 0, 0, 0.06);
+  color: #DB2777;
+}
+
+/* Quick Topic Pills Container */
+.chat-quick-chips {
+  padding: 0.4rem 0.95rem 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+body.theme-light .chat-quick-chips {
+  border-top-color: #E2E8F0;
+  background: #F8FAFC;
+}
+
+.quick-chip-btn {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #C7D2FE;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.quick-chip-btn:hover {
+  background: rgba(99, 102, 241, 0.35);
+  border-color: #818CF8;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+body.theme-light .quick-chip-btn {
+  background: #EEF2FF;
+  border-color: #C7D2FE;
+  color: #4338CA;
+}
+
+body.theme-light .quick-chip-btn:hover {
+  background: #E0E7FF;
+  border-color: #818CF8;
+}
+
+/* Chat Input Bar */
+.siksha-chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.95rem;
+  background: #131E35;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.theme-light .siksha-chat-input-bar {
+  background: #FFFFFF;
+  border-top-color: #E2E8F0;
+}
+
+.chat-input-field {
+  flex: 1;
+  background: #0B1120;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #F8FAFC;
+  padding: 0.65rem 0.95rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.chat-input-field:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}
+
+body.theme-light .chat-input-field {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  color: #0F172A;
+}
+
+body.theme-light .chat-input-field:focus {
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.chat-send-btn {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.chat-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Typing Indicator Animation */
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #94A3B8;
+  border-radius: 50%;
+  animation: typingBounce 1.3s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 640px) {
+  .siksha-chatbot-launcher {
+    bottom: 16px;
+    right: 16px;
+    padding: 0.65rem 1rem 0.65rem 0.75rem;
+  }
+
+  .launcher-subtitle {
+    display: none;
+  }
+
+  .siksha-chat-window {
+    bottom: 78px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+    height: 75vh;
+  }
+}

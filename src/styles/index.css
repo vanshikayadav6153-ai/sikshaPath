@@ -70,10 +70,10 @@ body {
 
 .main-content {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1560px;
   width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1.5rem 2rem 3.5rem;
 }
 
 /* Typography */
@@ -768,8 +768,9 @@ a {
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1560px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .footer-top {

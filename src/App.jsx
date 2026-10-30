@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ResetConfirmModal from './components/ResetConfirmModal';
+import AITutorChat from './components/AITutorChat';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -27,6 +28,7 @@ import './styles/journey.css';
 import './styles/teacher.css';
 import './styles/concept-map.css';
 import './styles/mobile.css';
+import './styles/chatbot.css';
 
 function AppContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -65,6 +67,7 @@ function AppContent() {
 
       <Footer />
       <ResetConfirmModal />
+      <AITutorChat />
     </div>
   );
 }
