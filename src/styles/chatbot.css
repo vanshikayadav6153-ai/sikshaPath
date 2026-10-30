@@ -22,8 +22,18 @@
     0 8px 24px rgba(79, 70, 229, 0.45),
     0 2px 8px rgba(0, 0, 0, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  animation: launcherGlow 3s infinite ease-in-out;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: inherit;
+}
+
+@keyframes launcherGlow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.45), 0 0 0 0 rgba(124, 58, 237, 0.5);
+  }
+  50% {
+    box-shadow: 0 12px 32px rgba(79, 70, 229, 0.7), 0 0 0 8px rgba(124, 58, 237, 0);
+  }
 }
 
 .siksha-chatbot-launcher:hover {
@@ -508,3 +518,4 @@ body.theme-light .chat-input-field:focus {
     height: 75vh;
   }
 }
+

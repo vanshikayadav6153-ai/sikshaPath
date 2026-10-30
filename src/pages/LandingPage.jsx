@@ -347,93 +347,186 @@ export default function LandingPage() {
       {/* ============================================================ */}
       <section className="hero-section">
         <div className="hero-container">
-          <div className="clay-pill-badge neon-pulse">
-            <span className="badge-sparkle">🚀</span>
-            <span>
+          {/* Left Column: Hero Copy & Actions */}
+          <div className="hero-content-col">
+            <div className="clay-pill-badge neon-pulse">
+              <span className="badge-sparkle">🚀</span>
+              <span>
+                {language === 'hi'
+                  ? 'अनुकूलित शिक्षा 2.0 • कक्षा 6 से 10 (NCERT Aligned)'
+                  : 'Playful Adaptive Learning • Classes 6–10 (NCERT Aligned)'}
+              </span>
+            </div>
+
+            <h1 className="hero-title neon-glow-text">
+              {language === 'hi' ? (
+                <>
+                  अपनी गति से सीखें। <br />
+                  <span className="neon-gradient-text">मार्गदर्शन के साथ बढ़ें।</span>
+                </>
+              ) : (
+                <>
+                  Learn at Your Pace. <br />
+                  <span className="neon-gradient-text">Level Up with Guidance.</span>
+                </>
+              )}
+            </h1>
+
+            <p className="hero-subtitle">
               {language === 'hi'
-                ? 'अनुकूलित शिक्षा 2.0 • कक्षा 6 से 10 (NCERT Aligned)'
-                : 'Playful Adaptive Learning • Classes 6–10 (NCERT Aligned)'}
-            </span>
+                ? 'शिक्षापथ प्रत्येक छात्र की वास्तविक समझ को पहचानता है और खेल-खेल में व्याख्या, अभ्यास और मिनी-टेस्ट को अनुकूलित करता है। शिक्षक सदैव नियंत्रण में रहते हैं।'
+                : 'SikshaPath gamifies concept-gap detection for Indian school students. It adapts practice, visualizes fractions with live sandboxes, and gives teachers full pedal-to-the-metal guidance control.'}
+            </p>
+
+            <div className="hero-cta-group">
+              <button
+                type="button"
+                className="clay-btn clay-btn-cyan btn-xl"
+                onClick={() => handleStartStudent('student-1')}
+              >
+                ⚡ {t('startLearning')} &rarr;
+              </button>
+              <button
+                type="button"
+                className="clay-btn clay-btn-magenta btn-xl"
+                onClick={() => {
+                  const el = document.getElementById('courses');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                📚 {language === 'hi' ? 'कोर्स देखें' : 'Explore Courses'}
+              </button>
+              <button
+                type="button"
+                className="clay-btn clay-btn-dark btn-xl"
+                onClick={handleStartTeacher}
+              >
+                👩‍🏫 {t('teacherDashboard')}
+              </button>
+            </div>
+
+            {/* Floating Claymorphic Stat Chips */}
+            <div className="hero-floating-chips">
+              <div className="clay-stat-chip chip-cyan">
+                <span className="chip-icon">🍕</span>
+                <div>
+                  <strong>Visual Sandbox</strong>
+                  <small>Interactive Fractions</small>
+                </div>
+              </div>
+
+              <div className="clay-stat-chip chip-magenta">
+                <span className="chip-icon">🎯</span>
+                <div>
+                  <strong>Zero Guesswork</strong>
+                  <small>Transparent Rules</small>
+                </div>
+              </div>
+
+              <div className="clay-stat-chip chip-lime">
+                <span className="chip-icon">🔥</span>
+                <div>
+                  <strong>100% Offline</strong>
+                  <small>No Cloud API Bills</small>
+                </div>
+              </div>
+
+              <div className="clay-stat-chip chip-amber">
+                <span className="chip-icon">👩‍🏫</span>
+                <div>
+                  <strong>Teacher Override</strong>
+                  <small>Educator in Control</small>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h1 className="hero-title neon-glow-text">
-            {language === 'hi' ? (
-              <>
-                अपनी गति से सीखें। <br />
-                <span className="neon-gradient-text">मार्गदर्शन के साथ बढ़ें।</span>
-              </>
-            ) : (
-              <>
-                Learn at Your Pace. <br />
-                <span className="neon-gradient-text">Level Up with Guidance.</span>
-              </>
-            )}
-          </h1>
-
-          <p className="hero-subtitle">
-            {language === 'hi'
-              ? 'शिक्षापथ प्रत्येक छात्र की वास्तविक समझ को पहचानता है और खेल-खेल में व्याख्या, अभ्यास और मिनी-टेस्ट को अनुकूलित करता है। शिक्षक सदैव नियंत्रण में रहते हैं।'
-              : 'SikshaPath gamifies concept-gap detection for Indian school students. It adapts practice, visualizes fractions with live sandboxes, and gives teachers full pedal-to-the-metal guidance control.'}
-          </p>
-
-          <div className="hero-cta-group">
-            <button
-              type="button"
-              className="clay-btn clay-btn-cyan btn-xl"
-              onClick={() => handleStartStudent('student-1')}
-            >
-              ⚡ {t('startLearning')} &rarr;
-            </button>
-            <button
-              type="button"
-              className="clay-btn clay-btn-magenta btn-xl"
-              onClick={() => {
-                const el = document.getElementById('courses');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              📚 {language === 'hi' ? 'कोर्स देखें' : 'Explore Courses'}
-            </button>
-            <button
-              type="button"
-              className="clay-btn clay-btn-dark btn-xl"
-              onClick={handleStartTeacher}
-            >
-              👩‍🏫 {t('teacherDashboard')}
-            </button>
-          </div>
-
-          {/* Floating Claymorphic Stat Chips */}
-          <div className="hero-floating-chips">
-            <div className="clay-stat-chip chip-cyan">
-              <span className="chip-icon">🍕</span>
-              <div>
-                <strong>Visual Sandbox</strong>
-                <small>Interactive Fractions</small>
+          {/* Right Column: Live Interactive Math Sandbox Card */}
+          <div className="hero-showcase-col">
+            <div className="clay-card hero-showcase-card border-glow-cyan">
+              <div className="showcase-topbar">
+                <div className="showcase-live-tag">
+                  <span className="showcase-live-pulse" />
+                  <span>{language === 'hi' ? 'लाइव NCERT गणित सैंडबॉक्स' : 'Live NCERT Math Sandbox'}</span>
+                </div>
+                <span className="showcase-chapter-tag">
+                  {language === 'hi' ? 'कक्षा 6 • अध्याय 7 भिन्न' : 'Class 6 • Ch 7 Fractions'}
+                </span>
               </div>
-            </div>
 
-            <div className="clay-stat-chip chip-magenta">
-              <span className="chip-icon">🎯</span>
-              <div>
-                <strong>Zero Guesswork</strong>
-                <small>Transparent Rules</small>
-              </div>
-            </div>
+              <div className="showcase-body">
+                <div className="showcase-math-header">
+                  <div>
+                    <h3 className="showcase-math-title">
+                      {language === 'hi' ? 'तुल्य भिन्न (Equivalent Fractions)' : 'Equivalent Fractions Concept'}
+                    </h3>
+                    <p className="showcase-math-sub">
+                      {language === 'hi' ? 'क्या 2/3 और 4/6 बराबर हैं?' : 'Are 2/3 and 4/6 equal visually?'}
+                    </p>
+                  </div>
+                  <span className="showcase-xp-badge">+60 XP ⚡</span>
+                </div>
 
-            <div className="clay-stat-chip chip-lime">
-              <span className="chip-icon">🔥</span>
-              <div>
-                <strong>100% Offline</strong>
-                <small>No Cloud API Bills</small>
-              </div>
-            </div>
+                {/* Visual Fraction Comparison Bars */}
+                <div className="showcase-bars-box">
+                  <div className="showcase-bar-unit">
+                    <div className="bar-header-row">
+                      <span className="bar-fraction-num">2 / 3</span>
+                      <span className="bar-fraction-desc">{language === 'hi' ? '3 में से 2 भाग' : '2 of 3 parts'}</span>
+                    </div>
+                    <div className="showcase-bar-track">
+                      <div className="showcase-seg seg-cyan" style={{ width: '33.33%' }}>1/3</div>
+                      <div className="showcase-seg seg-cyan" style={{ width: '33.33%' }}>1/3</div>
+                      <div className="showcase-seg seg-empty" style={{ width: '33.33%' }}>1/3</div>
+                    </div>
+                  </div>
 
-            <div className="clay-stat-chip chip-amber">
-              <span className="chip-icon">👩‍🏫</span>
-              <div>
-                <strong>Teacher Override</strong>
-                <small>Educator in Control</small>
+                  <div className="showcase-bar-unit">
+                    <div className="bar-header-row">
+                      <span className="bar-fraction-num">4 / 6</span>
+                      <span className="bar-fraction-desc">{language === 'hi' ? '6 में से 4 भाग (समान मान)' : '4 of 6 parts (Equal!)'}</span>
+                    </div>
+                    <div className="showcase-bar-track">
+                      <div className="showcase-seg seg-lime" style={{ width: '16.66%' }}>1/6</div>
+                      <div className="showcase-seg seg-lime" style={{ width: '16.66%' }}>1/6</div>
+                      <div className="showcase-seg seg-lime" style={{ width: '16.66%' }}>1/6</div>
+                      <div className="showcase-seg seg-lime" style={{ width: '16.66%' }}>1/6</div>
+                      <div className="showcase-seg seg-empty" style={{ width: '16.66%' }}>1/6</div>
+                      <div className="showcase-seg seg-empty" style={{ width: '16.66%' }}>1/6</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual Proof Badge */}
+                <div className="showcase-callout-pill">
+                  💡 <strong>{language === 'hi' ? 'दृश्य प्रमाण:' : 'Visual Proof:'}</strong> {language === 'hi' ? '2/3 = (2×2)/(3×2) = 4/6 दोनों समान भाग घेरते हैं!' : '2/3 = (2×2)/(3×2) = 4/6 occupy the exact same length!'}
+                </div>
+
+                {/* Real-time Rule Card */}
+                <div className="showcase-rule-box">
+                  <div className="rule-box-header">
+                    <span className="rule-dot-active" />
+                    <span className="rule-label">{language === 'hi' ? 'अनुकूली नियम (Adaptive Engine Rule):' : 'Adaptive Engine Decision:'}</span>
+                  </div>
+                  <p className="rule-statement">
+                    {language === 'hi'
+                      ? 'तुल्य भिन्न समझ पक्की (88%) → अगला कदम: असमान हर वाले भिन्नों का जोड़'
+                      : 'Concept Gap Closed (88%) → Auto-recommending Unlike Denominator Addition'}
+                  </p>
+                </div>
+
+                {/* Direct Action Button */}
+                <button
+                  type="button"
+                  className="clay-btn clay-btn-cyan btn-block showcase-cta-btn"
+                  onClick={() => {
+                    setRole('student');
+                    setCurrentStudentId('student-1');
+                    navigate('/student/learn?topic=fractions');
+                  }}
+                >
+                  🚀 {language === 'hi' ? 'कक्षा 6 भिन्न अध्याय खोलें' : 'Launch Interactive Fractions'} &rarr;
+                </button>
               </div>
             </div>
           </div>
@@ -767,9 +860,37 @@ export default function LandingPage() {
               </p>
 
               <div className="course-stats-bar">
-                <span>📖 {course.lessonsCount} Modules</span>
-                <span>✏️ {course.questionsCount} Practice Items</span>
-                <span>⭐ {language === 'hi' ? course.difficultyHi : course.difficulty}</span>
+                <div className="course-stat-col">
+                  <div className="stat-col-header">
+                    <span className="stat-col-icon">📖</span>
+                    <span className="stat-col-val">{course.lessonsCount}</span>
+                  </div>
+                  <span className="stat-col-label">{language === 'hi' ? 'मॉड्यूल' : 'Modules'}</span>
+                </div>
+
+                <div className="course-stat-divider" />
+
+                <div className="course-stat-col">
+                  <div className="stat-col-header">
+                    <span className="stat-col-icon">✏️</span>
+                    <span className="stat-col-val">{course.questionsCount}</span>
+                  </div>
+                  <span className="stat-col-label">{language === 'hi' ? 'प्रश्न' : 'Practice'}</span>
+                </div>
+
+                <div className="course-stat-divider" />
+
+                <div className="course-stat-col" title={language === 'hi' ? course.difficultyHi : course.difficulty}>
+                  <div className="stat-col-header">
+                    <span className="stat-col-icon">⭐</span>
+                    <span className="stat-col-val">
+                      {language === 'hi'
+                        ? (course.difficultyHi?.split(' ')[0] || 'बुनियादी')
+                        : (course.difficulty?.split(' ')[0] || 'Core')}
+                    </span>
+                  </div>
+                  <span className="stat-col-label">{language === 'hi' ? 'स्तर' : 'Level'}</span>
+                </div>
               </div>
 
               <div className="course-card-footer">
