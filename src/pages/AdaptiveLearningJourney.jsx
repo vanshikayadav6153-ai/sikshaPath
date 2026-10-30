@@ -82,7 +82,20 @@ export default function AdaptiveLearningJourney() {
 
   // STAGE 1: QUICK CHECK (Diagnostic) State
   const diagnosticQuestions = useMemo(() => {
-    return topicQuestions.filter((q) => q.type === 'diagnostic');
+    const list = topicQuestions.filter((q) => q.type === 'diagnostic');
+    return list.length > 0 ? list : topicQuestions.slice(0, 3);
+  }, [topicQuestions]);
+
+  // STAGE 3: SOLVE (Practice Questions) State
+  const practiceQuestions = useMemo(() => {
+    const list = topicQuestions.filter((q) => q.type === 'practice');
+    return list.length > 0 ? list : topicQuestions;
+  }, [topicQuestions]);
+
+  // STAGE 4: TEST (Mini-Test) State
+  const testQuestions = useMemo(() => {
+    const list = topicQuestions.filter((q) => q.type === 'test');
+    return list.length > 0 ? list : topicQuestions;
   }, [topicQuestions]);
 
   const [diagAnswers, setDiagAnswers] = useState({});
@@ -168,7 +181,17 @@ export default function AdaptiveLearningJourney() {
   const [checkedAnswer, setCheckedAnswer] = useState(false);
   const [practiceStats, setPracticeStats] = useState({ correct: 0, total: 0 });
 
-  const currentPracticeQ = practiceQuestions[practiceIndex] || practiceQuestions[0];
+  const currentPracticeQ = practiceQuestions[practiceIndex] || practiceQuestions[0] || {
+    question: 'Practice Question',
+    questionHi: 'अभ्यास प्रश्न',
+    options: ['Option A', 'Option B', 'Option C', 'Option D'],
+    optionsHi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
+    correctAnswer: 0,
+    concept: 'practice',
+    difficulty: 1,
+    hint: 'Review the concept and try again.',
+    hintHi: 'अवधारणा को ध्यान से पढ़कर पुनः प्रयास करें।'
+  };
 
   const handleCheckPractice = () => {
     if (practiceAnswer == null) return;
@@ -184,7 +207,7 @@ export default function AdaptiveLearningJourney() {
     setPracticeAnswer(null);
     setCheckedAnswer(false);
     setShowHint(false);
-    setPracticeIndex((prev) => (prev + 1) % practiceQuestions.length);
+    setPracticeIndex((prev) => (practiceQuestions.length > 0 ? (prev + 1) % practiceQuestions.length : 0));
   };
 
   // -------------------------------------------------------------
@@ -364,7 +387,7 @@ export default function AdaptiveLearningJourney() {
                     <div key={q.id} className="question-card">
                       <div className="question-header">
                         <span className="q-badge">Q{idx + 1}</span>
-                        <span className="concept-badge">{q.concept.replace(/-/g, ' ')}</span>
+                        <span className="concept-badge">{q.concept ? q.concept.replace(/-/g, ' ') : (q.topic || 'Concept')}</span>
                       </div>
                       <p className="q-prompt">{qText}</p>
 
@@ -447,7 +470,7 @@ export default function AdaptiveLearningJourney() {
                         <strong>{language === 'hi' ? 'कमजोर विषय:' : 'Identified Concept Gaps:'}</strong>
                         {diagResult.weakConcepts.map((c) => (
                           <span key={c} className="weak-tag">
-                            ⚠️ {c.replace(/-/g, ' ')}
+                            ⚠️ {c ? c.replace(/-/g, ' ') : ''}
                           </span>
                         ))}
                       </div>
@@ -514,7 +537,7 @@ export default function AdaptiveLearningJourney() {
                 </button>
               )}
 
-              {currentLesson.modules.map((mod) => (
+              {(currentLesson?.modules || []).map((mod) => (
                 <button
                   key={mod.id}
                   type="button"
@@ -588,7 +611,7 @@ export default function AdaptiveLearningJourney() {
               )}
 
               {/* Individual Concept Modules */}
-              {currentLesson.modules.map((mod) => {
+              {(currentLesson?.modules || []).map((mod) => {
                 if (activeLessonTab !== mod.id) return null;
                 const bulletList = language === 'hi' ? (mod.content?.hi || []) : (mod.content?.en || []);
 
@@ -687,18 +710,20 @@ export default function AdaptiveLearningJourney() {
 
             <div className="practice-card">
               <div className="practice-header">
-                <span className="concept-pill">{currentPracticeQ.concept.replace(/-/g, ' ')}</span>
+                <span className="concept-pill">
+                  {currentPracticeQ?.concept ? currentPracticeQ.concept.replace(/-/g, ' ') : 'Practice Concept'}
+                </span>
                 <span className="difficulty-pill">
-                  {language === 'hi' ? 'कठिनाई:' : 'Difficulty:'} {currentPracticeQ.difficulty}/3
+                  {language === 'hi' ? 'कठिनाई:' : 'Difficulty:'} {currentPracticeQ?.difficulty || 1}/3
                 </span>
               </div>
 
               <h3 className="practice-prompt">
-                {language === 'hi' ? currentPracticeQ.questionHi : currentPracticeQ.question}
+                {language === 'hi' ? (currentPracticeQ?.questionHi || currentPracticeQ?.question) : currentPracticeQ?.question}
               </h3>
 
               <div className="options-grid">
-                {(language === 'hi' ? currentPracticeQ.optionsHi : currentPracticeQ.options).map(
+                {((language === 'hi' ? currentPracticeQ?.optionsHi : currentPracticeQ?.options) || currentPracticeQ?.options || []).map(
                   (opt, optIdx) => {
                     const isSelected = practiceAnswer === optIdx;
                     let stateClass = '';
@@ -836,12 +861,12 @@ export default function AdaptiveLearningJourney() {
                     <div key={q.id} className="question-card">
                       <div className="question-header">
                         <span className="q-badge">Q{idx + 1}</span>
-                        <span className="concept-badge">{q.concept.replace(/-/g, ' ')}</span>
+                        <span className="concept-badge">{q.concept ? q.concept.replace(/-/g, ' ') : (q.topic || 'Concept')}</span>
                       </div>
                       <p className="q-prompt">{language === 'hi' ? q.questionHi : q.question}</p>
 
                       <div className="options-grid">
-                        {(language === 'hi' ? q.optionsHi : q.options).map((opt, optIdx) => (
+                        {((language === 'hi' ? q.optionsHi : q.options) || q.options || []).map((opt, optIdx) => (
                           <button
                             key={optIdx}
                             type="button"
@@ -933,7 +958,7 @@ export default function AdaptiveLearningJourney() {
                             {language === 'hi' ? 'आपका उत्तर:' : 'Your Answer:'}{' '}
                             <strong>
                               {sel != null
-                                ? (language === 'hi' ? q.optionsHi : q.options)[sel]
+                                ? ((language === 'hi' ? q.optionsHi : q.options)?.[sel] || q.options?.[sel] || 'Option ' + sel)
                                 : language === 'hi' ? 'उत्तर नहीं दिया' : 'Not answered'}
                             </strong>
                           </span>
@@ -941,7 +966,7 @@ export default function AdaptiveLearningJourney() {
                             <span>
                               &nbsp;&middot; {language === 'hi' ? 'सही उत्तर:' : 'Correct:'}{' '}
                               <strong className="text-success">
-                                {(language === 'hi' ? q.optionsHi : q.options)[q.correctAnswer]}
+                                {(language === 'hi' ? q.optionsHi : q.options)?.[q.correctAnswer] || q.options?.[q.correctAnswer] || 'Correct Option'}
                               </strong>
                             </span>
                           )}
@@ -1046,7 +1071,7 @@ export default function AdaptiveLearningJourney() {
                   {recommendation?.concept && (
                     <div className="concept-focus-line">
                       <strong>{language === 'hi' ? 'लक्षित अवधारणा:' : 'Concept Focus:'}</strong>{' '}
-                      <span className="concept-highlight">{recommendation.concept.replace(/-/g, ' ')}</span>
+                      <span className="concept-highlight">{recommendation.concept ? recommendation.concept.replace(/-/g, ' ') : ''}</span>
                     </div>
                   )}
                 </div>

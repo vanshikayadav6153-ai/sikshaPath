@@ -1058,7 +1058,8 @@ export const lessonsByTopic = {
   'playing-with-numbers': playingWithNumbersLesson,
   integers: integersLesson,
   decimals: decimalsLesson,
-  'basic-geometry': basicGeometryLesson
+  'basic-geometry': basicGeometryLesson,
+  mensuration: basicGeometryLesson
 };
 
 export default fractionsLesson;

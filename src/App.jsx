@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ResetConfirmModal from './components/ResetConfirmModal';
 import AITutorChat from './components/AITutorChat';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -50,19 +51,21 @@ function AppContent() {
       />
 
       <main className="main-content">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/student/dashboard" element={<StudentDashboard />} />
-          <Route path="/student/learn" element={<AdaptiveLearningJourney />} />
-          <Route path="/student/concept-map" element={<ConceptGapMapPage />} />
-          <Route path="/student/report" element={<StudentReportPage />} />
-          {/* Alias for dashboard button */}
-          <Route path="/student/progress" element={<StudentReportPage />} />
-          <Route path="/select-profile" element={<RoleSelectionPage />} />
-          <Route path="/profile" element={<RoleSelectionPage />} />
-          <Route path="/teacher" element={<TeacherDashboard />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/student/dashboard" element={<StudentDashboard />} />
+            <Route path="/student/learn" element={<AdaptiveLearningJourney />} />
+            <Route path="/student/concept-map" element={<ConceptGapMapPage />} />
+            <Route path="/student/report" element={<StudentReportPage />} />
+            {/* Alias for dashboard button */}
+            <Route path="/student/progress" element={<StudentReportPage />} />
+            <Route path="/select-profile" element={<RoleSelectionPage />} />
+            <Route path="/profile" element={<RoleSelectionPage />} />
+            <Route path="/teacher" element={<TeacherDashboard />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
 
       <Footer />
