@@ -95,3 +95,4 @@ export function recordActivityStreak(currentStreak = 0, lastActiveDate = null) {
     };
   }
 }
+

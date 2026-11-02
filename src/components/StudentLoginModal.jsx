@@ -298,3 +298,4 @@ export default function StudentLoginModal() {
     </div>
   );
 }
+

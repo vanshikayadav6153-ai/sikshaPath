@@ -762,6 +762,175 @@ export default function LandingPage() {
       </section>
 
       {/* ============================================================ */}
+      {/* 2.5 CODE KERNEL '26 FRAMEWORK: LEARN, SOLVE, TEST & BUILT FOR INDIA */}
+      {/* ============================================================ */}
+      <section className="section-block framework-section" style={{ padding: '2rem 1.5rem', maxWidth: '1280px', margin: '0 auto' }}>
+        <div className="section-header text-center" style={{ marginBottom: '2.5rem' }}>
+          <div className="clay-pill-badge neon-pulse" style={{ display: 'inline-flex', marginBottom: '0.85rem' }}>
+            <span>🎯 {language === 'hi' ? 'समस्या समाधान रूपरेखा (Code Kernel 2026)' : 'Problem Statement Aligned • Code Kernel 2026'}</span>
+          </div>
+          <h2 className="section-heading" style={{ fontSize: '2.3rem', marginBottom: '0.75rem' }}>
+            {language === 'hi' ? (
+              <>
+                एक गति सबके लिए सही नहीं <br />
+                <span className="neon-gradient-text">One Pace Does Not Fit Every Learner</span>
+              </>
+            ) : (
+              <>
+                One Pace Does Not Fit Every Learner <br />
+                <span className="neon-gradient-text">Adaptive Learning for Classes 6 to 10</span>
+              </>
+            )}
+          </h2>
+          <p className="section-subtext" style={{ maxWidth: '820px', margin: '0 auto', fontSize: '1.05rem', lineHeight: '1.6' }}>
+            {language === 'hi'
+              ? 'कक्षा में कुछ बच्चे पहले ही समझ चुके होते हैं और ऊब जाते हैं, जबकि अन्य बुनियादी बातों में उलझकर पीछे छूट जाते हैं। शिक्षापथ अध्ययन के तीनों चरणों—सीखना, हल करना और जाँचना (Learn, Solve, Test)—में प्रत्येक छात्र के अनुसार ढलता है।'
+              : 'Every classroom has students learning at different speeds. Tests usually come at the end of a chapter, so by the time a gap shows up, the class has already moved on. SikshaPath adapts across all three parts of studying.'}
+          </p>
+        </div>
+
+        {/* 3 Core Pillars of Problem Reality */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+          <div className="clay-card border-glow-cyan" style={{ padding: '1.75rem' }}>
+            <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>⚡</div>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#00F0FF' }}>
+              {language === 'hi' ? 'तेज़ शिक्षार्थी ऊब जाते हैं' : 'Fast Learners Get Bored'}
+            </h3>
+            <p style={{ color: 'var(--text-muted, #94a3b8)', lineHeight: '1.55', fontSize: '0.95rem' }}>
+              {language === 'hi'
+                ? 'जिन्होंने विषय पहले ही समझ लिया है, वे पूरी कक्षा की समान गति पर रुकने के लिए मजबूर होते हैं। उन्हें चुनौती भरे प्रश्नों की आवश्यकता है।'
+                : 'Students who already understood the topic are kept waiting at the class pace. SikshaPath unlocks advanced challenges and deep dive exploration.'}
+            </p>
+          </div>
+
+          <div className="clay-card border-glow-magenta" style={{ padding: '1.75rem' }}>
+            <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>📉</div>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#FF2E93' }}>
+              {language === 'hi' ? 'कमजोर छात्र पीछे छूट जाते हैं' : 'Struggling Students Fall Behind'}
+            </h3>
+            <p style={{ color: 'var(--text-muted, #94a3b8)', lineHeight: '1.55', fontSize: '0.95rem' }}>
+              {language === 'hi'
+                ? 'कक्षा 6 या 7 में छूटी हुई बुनियादी अवधारणा बाद की पढ़ाई को और कठिन बना देती है। शिक्षापथ स्वतः फाउंडेशन रीकैप और सचित्र व्याख्या देता है।'
+                : 'A basic missed in Class 6 or 7 makes subsequent topics harder. SikshaPath detects gaps quietly and provides instant foundation revision.'}
+            </p>
+          </div>
+
+          <div className="clay-card border-glow-lime" style={{ padding: '1.75rem' }}>
+            <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>🔍</div>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#00FF9D' }}>
+              {language === 'hi' ? 'खामी चुपचाप बढ़ती है (Gap Grows Quietly)' : 'The Gap Grows Quietly'}
+            </h3>
+            <p style={{ color: 'var(--text-muted, #94a3b8)', lineHeight: '1.55', fontSize: '0.95rem' }}>
+              {language === 'hi'
+                ? 'परीक्षा आमतौर पर अध्याय के अंत में होती है। जब तक पता चलता है, तब तक कक्षा आगे बढ़ चुकी होती है। हमारा Quick Check तुरंत समझ माप लेता है।'
+                : 'Tests usually come at the end of a chapter. Our zero-pressure Quick Check continuously maps what each student has truly understood.'}
+            </p>
+          </div>
+        </div>
+
+        {/* 3 Parts of Studying Graphic: Learn, Solve, Test */}
+        <div className="clay-card" style={{ padding: '2.25rem', background: 'linear-gradient(145deg, #161f38 0%, #0d1527 100%)', marginBottom: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <span style={{ color: '#00F0FF', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.85rem' }}>
+              {language === 'hi' ? 'अध्ययन के तीन अंग' : 'Three Parts of Studying'}
+            </span>
+            <h3 style={{ fontSize: '1.85rem', marginTop: '0.35rem' }}>
+              {language === 'hi' ? 'सीखना, हल करना और जाँचना (Learn, Solve, Test)' : 'Learn, Solve, Test — Adapting Across All Three'}
+            </h3>
+            <p style={{ color: 'var(--text-muted, #94a3b8)', maxWidth: '680px', margin: '0.5rem auto 0' }}>
+              {language === 'hi'
+                ? 'अनुकूलित शिक्षा केवल अभ्यास प्रश्नों तक सीमित नहीं है। शिक्षापथ अध्ययन के तीनों घटकों में शिक्षार्थी की गति के अनुसार बदलता है।'
+                : 'Adaptive learning is not just about practice questions. Studying has three parts, and SikshaPath adapts what comes next, how, and how fast across all three.'}
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ padding: '1.5rem', borderRadius: '18px', background: 'rgba(0, 240, 255, 0.05)', border: '1px solid rgba(0, 240, 255, 0.25)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1.8rem' }}>📖</span>
+                <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#00F0FF' }}>01 • LEARN</span>
+              </div>
+              <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem' }}>
+                {language === 'hi' ? 'अवधारणा सीखना' : 'Learning a Concept'}
+              </h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted, #94a3b8)', lineHeight: '1.5' }}>
+                {language === 'hi'
+                  ? 'सचित्र पिज़्ज़ा व नंबर लाइन सैंडबॉक्स। कमजोर छात्रों के लिए स्वतः बुनियादी पुनरावलोकन और उन्नत छात्रों के लिए गहन विचारोत्तेजक सिद्धांत।'
+                  : 'Interactive visual manipulatives. Struggling learners receive foundation recaps while advanced students explore deeper mathematical applications.'}
+              </p>
+            </div>
+
+            <div style={{ padding: '1.5rem', borderRadius: '18px', background: 'rgba(255, 46, 147, 0.05)', border: '1px solid rgba(255, 46, 147, 0.25)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1.8rem' }}>✏️</span>
+                <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#FF2E93' }}>02 • SOLVE</span>
+              </div>
+              <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem' }}>
+                {language === 'hi' ? 'समस्या समाधान' : 'Solving Problems'}
+              </h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted, #94a3b8)', lineHeight: '1.5' }}>
+                {language === 'hi'
+                  ? 'चरणबद्ध संकेत और बिना दंड के अभ्यास। छात्र की गलतियों पर तुरंत मार्गदर्शन मिलता है ताकि वे आत्मविश्वास से आगे बढ़ सकें।'
+                  : 'Scaffolded practice with progressive hints. Distractors guide misunderstanding without penalties, building genuine problem-solving confidence.'}
+              </p>
+            </div>
+
+            <div style={{ padding: '1.5rem', borderRadius: '18px', background: 'rgba(0, 255, 157, 0.05)', border: '1px solid rgba(0, 255, 157, 0.25)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1.8rem' }}>📝</span>
+                <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#00FF9D' }}>03 • TEST</span>
+              </div>
+              <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem' }}>
+                {language === 'hi' ? 'समझ की जाँच' : 'Testing What You Know'}
+              </h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted, #94a3b8)', lineHeight: '1.5' }}>
+                {language === 'hi'
+                  ? 'त्वरित Quick Check और मिनी-टेस्ट। यह 3 स्पष्ट स्थितियों—जाँच नहीं हुई, अभ्यास जारी, और समझ गया—में प्रगति दर्ज करता है।'
+                  : 'Diagnostic Quick Checks and chapter mini-tests. Accurately categorizes sub-concepts into Not Checked, Practising, and Understood.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Built for India & Empowering Teachers Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+          <div className="clay-card border-glow-amber" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+              <span style={{ fontSize: '2rem' }}>🇮🇳</span>
+              <div>
+                <h4 style={{ fontSize: '1.25rem', margin: 0, color: '#FBBF24' }}>
+                  {language === 'hi' ? 'भारतीय कक्षाओं के लिए निर्मित' : 'Built for Indian Classrooms'}
+                </h4>
+                <small style={{ color: 'var(--text-muted, #94a3b8)' }}>CBSE / NCERT / State Boards</small>
+              </div>
+            </div>
+            <ul style={{ color: 'var(--text-muted, #94a3b8)', fontSize: '0.92rem', lineHeight: '1.7', paddingLeft: '1.2rem', margin: 0 }}>
+              <li><strong>{language === 'hi' ? 'द्विभाषी शिक्षा:' : 'Bilingual Support:'}</strong> {language === 'hi' ? 'अंग्रेज़ी और प्रामाणिक NCERT हिन्दी शब्दावली में एक-क्लिक टॉगल।' : 'Seamless 1-click toggle between English and authentic NCERT Hindi.'}</li>
+              <li><strong>{language === 'hi' ? '100% ऑफ़लाइन सक्षम:' : '100% Offline Capable:'}</strong> {language === 'hi' ? 'बिना इंटरनेट या महंगे डेटा पैक के परिवार के एक साझा फोन पर भी सहज संचालन।' : 'Runs locally without cloud API costs; perfect for shared family devices with limited internet.'}</li>
+              <li><strong>{language === 'hi' ? 'बड़ी कक्षाओं के अनुकूल:' : 'Large Class Sizes:'}</strong> {language === 'hi' ? '40-60 बच्चों वाली कक्षा में भी हर छात्र की व्यक्तिगत स्थिति का स्पष्ट दृश्य।' : 'Scales cleanly across 40–60 students per section with instant matrix summaries.'}</li>
+            </ul>
+          </div>
+
+          <div className="clay-card border-glow-cyan" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+              <span style={{ fontSize: '2rem' }}>👩‍🏫</span>
+              <div>
+                <h4 style={{ fontSize: '1.25rem', margin: 0, color: '#00F0FF' }}>
+                  {language === 'hi' ? 'शिक्षकों का सशक्तिकरण' : 'Empowering the School Teacher'}
+                </h4>
+                <small style={{ color: 'var(--text-muted, #94a3b8)' }}>Teacher at the Center, Not Replaced</small>
+              </div>
+            </div>
+            <ul style={{ color: 'var(--text-muted, #94a3b8)', fontSize: '0.92rem', lineHeight: '1.7', paddingLeft: '1.2rem', margin: 0 }}>
+              <li><strong>{language === 'hi' ? 'कक्षावार भ्रांति डिटेक्टर:' : 'Misconception Detector:'}</strong> {language === 'hi' ? 'हरों को सीधे जोड़ देने जैसी सामान्य गलतियों की तुरंत पहचान।' : 'Pinpoints common mistakes like adding denominators directly or skipping LCM.'}</li>
+              <li><strong>{language === 'hi' ? 'शिक्षक ओवरराइड अधिकार:' : 'Pedagogical Override:'}</strong> {language === 'hi' ? 'शिक्षक किसी भी एल्गोरिदम सिफारिश को अपनी शिक्षण योजना के अनुसार बदल सकते हैं।' : 'Educators can override any algorithm recommendation to fit their lesson plans.'}</li>
+              <li><strong>{language === 'hi' ? 'मुद्रण योग्य रिपोर्ट:' : 'Printable PDF Reports:'}</strong> {language === 'hi' ? 'अभिभावक-शिक्षक बैठक (PTM) के लिए एक-क्लिक मुद्रण योग्य छात्र प्रगति पत्रक।' : 'Generates clean printable mastery sheets for Parent-Teacher Meetings.'}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* 3. COURSE CATALOG PREVIEW */}
       {/* ============================================================ */}
       <section className="section-block catalog-section" id="courses">

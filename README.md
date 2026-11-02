@@ -95,6 +95,49 @@ Modern artificial intelligence platforms in education have introduced significan
 ### 2.3 The Vernacular Language Divide
 Over 70% of Indian school children are enrolled in regional-language or bilingual institutions. Existing educational software commonly utilizes literal machine translation that mangles standardized mathematical terminology, alienating learners from their official textbook vernacular (*तुल्य भिन्न*, *अंश/हर*, *पूर्णांक*, *म.स.प.*, *ल.स.प.*).
 
+### 2.4 Alignment with Code Kernel '26 Problem Statement (Canvas Classes)
+
+SikshaPath directly addresses the core thesis defined in the **Code Kernel '26 Problem Statement** (*Adaptive Learning for Classes 6 to 10*):
+
+```
+                   CODE KERNEL '26 — THE CLASSROOM DILEMMA
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ "One pace does not fit every learner."                                      │
+│                                                                             │
+│  Student A (Fast)      [████████████████████████████] -> Gets Bored         │
+│  Class Pace            [════════════════]             -> Standard Pace      │
+│  Student C (Struggling)[██████]                       -> Falls Behind       │
+│                                                                             │
+│  "The gap grows quietly: Tests come at the end of a chapter, so by the     │
+│   time a gap shows up, the class has already moved on."                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### The Five Key Questions Addressed
+
+| # | Key Question from Code Kernel '26 | How SikshaPath Answers It |
+|---|---|---|
+| **01** | *How will you know what a student has understood?* | **Formative Quick Checks & Concept-Gap Map**: Granular micro-concept telemetry evaluates understanding across 3 explicit states (`Not Checked`, `Practising`, `Understood`) instead of waiting for end-of-chapter exams. |
+| **02** | *How will your solution adapt when a student struggles or moves ahead?* | **Deterministic 3-Tier Adaptive Engine**: Score <50% triggers Foundation Recap & visual manipulatives; 50–79% triggers targeted practice on weak sub-concepts; ≥80% unlocks high-difficulty challenges and mini-tests. |
+| **03** | *How will it work in a typical Indian school?* | **100% Offline-First & Shared Family Device Support**: Client-side single-page app runs on low-end hardware without recurring cloud API fees or high-speed internet. Multi-student profile switching allows multiple siblings to learn on one shared phone with isolated records. |
+| **04** | *How does it help the teacher, not replace them?* | **Educator-in-the-Loop Console**: Provides whole-class concept mastery matrices, detects common class misconceptions (e.g., adding denominators directly), and grants teachers 1-click pedagogical override authority. |
+| **05** | *Who uses it, and how often?* | **Students & Teachers Alike**: Students aged 11–16 use it during daily/weekly self-study and homework with consistency-based streak tracking; teachers use it weekly for formative diagnostics and PTM report generation. |
+
+#### Three Parts of Studying: Learn, Solve, Test
+
+Adaptive learning cannot rely solely on practice question drill-and-kill. SikshaPath adapts across all three canonical parts of study:
+
+```
+          THE SIKSHAPATH THREE-PART ADAPTIVE STUDY CYCLE
+  ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+  │   01 • LEARN     │      │   02 • SOLVE     │      │    03 • TEST     │
+  │ Learning Concept │ ───> │ Solving Problems │ ───> │ Testing Knowledge│
+  │ Visual fraction  │      │ Progressive hints│      │ Quick Check and  │
+  │ sandboxes &      │      │ & non-punitive   │      │ chapter mini-test│
+  │ foundation recap │      │ targeted practice│      │ mastery tracking │
+  └──────────────────┘      └──────────────────┘      └──────────────────┘
+```
+
 ---
 
 ## 3. Proposed Solution
