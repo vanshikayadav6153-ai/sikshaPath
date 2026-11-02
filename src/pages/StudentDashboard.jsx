@@ -425,6 +425,9 @@ export default function StudentDashboard() {
 
       {/* ======= Quick Links ======= */}
       <section className="quick-links">
+        <button className="btn btn-outline" onClick={() => navigate('/student/notes')}>
+          📚 {language === 'hi' ? 'अध्याय नोट्स (Class 6-10)' : 'Study Notes (Class 6-10)'}
+        </button>
         <button className="btn btn-outline" onClick={() => navigate('/student/progress')}>
           📈 {language === 'hi' ? 'पूरी रिपोर्ट देखें' : 'View Full Report'}
         </button>

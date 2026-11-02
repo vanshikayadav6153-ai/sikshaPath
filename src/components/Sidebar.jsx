@@ -179,6 +179,14 @@ export default function Sidebar({ isOpen, onClose }) {
                 <span>{t('navConceptMap')}</span>
               </NavLink>
               <NavLink
+                to="/student/notes"
+                className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                <span className="link-icon">📚</span>
+                <span>{language === 'hi' ? 'अध्ययन नोट्स' : 'Study Notes'}</span>
+              </NavLink>
+              <NavLink
                 to="/student/report"
                 className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
                 onClick={onClose}

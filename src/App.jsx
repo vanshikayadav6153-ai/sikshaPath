@@ -21,6 +21,7 @@ import ConceptGapMapPage from './pages/ConceptGapMapPage';
 import StudentReportPage from './pages/StudentReportPage';
 import TeacherDashboard from './pages/TeacherDashboard';
 import RoleSelectionPage from './pages/RoleSelectionPage';
+import StudyNotesViewer from './components/StudyNotesViewer';
 
 // Global Styles
 import './styles/index.css';
@@ -58,6 +59,7 @@ function AppContent() {
             <Route path="/student/dashboard" element={<StudentDashboard />} />
             <Route path="/student/learn" element={<AdaptiveLearningJourney />} />
             <Route path="/student/concept-map" element={<ConceptGapMapPage />} />
+            <Route path="/student/notes" element={<StudyNotesViewer />} />
             <Route path="/student/report" element={<StudentReportPage />} />
             {/* Alias for dashboard button */}
             <Route path="/student/progress" element={<StudentReportPage />} />

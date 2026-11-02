@@ -93,6 +93,12 @@ export default function Navbar({ onToggleSidebar }) {
               >
                 {t('navConceptMap')}
               </NavLink>
+              <NavLink
+                to="/student/notes"
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                {language === 'hi' ? 'अध्ययन नोट्स' : 'Study Notes'}
+              </NavLink>
             </>
           ) : (
             <NavLink

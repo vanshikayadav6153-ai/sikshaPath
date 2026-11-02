@@ -1,0 +1,527 @@
+[
+  {
+    "class": 6,
+    "chapters": [
+      {
+        "chapter_id": "fractions",
+        "chapter_number": 7,
+        "chapter_name": "Fractions (भिन्न)",
+        "chapter_nameHi": "भिन्न (अध्याय 7)",
+        "syllabus_topics": [
+          {
+            "topic_id": "numerator-denominator",
+            "topic_name": "Numerator & Denominator (अंश और हर)",
+            "topic_nameHi": "अंश और हर की संकल्पना",
+            "notes": {
+              "concept_intro": "A fraction represents a part of a whole or a collection of objects divided into equal parts.",
+              "concept_introHi": "भिन्न किसी पूर्ण वस्तु या समूह के बराबर भागों में से चुने गए भाग को दर्शाती है।",
+              "key_points": [
+                "The numerator (top number) indicates how many equal parts are taken or considered.",
+                "The denominator (bottom number) indicates the total number of equal parts the whole is divided into.",
+                "The denominator can never be 0 because division by zero is mathematically undefined.",
+                "All parts of the whole must be strictly equal in size to form a valid mathematical fraction."
+              ],
+              "key_pointsHi": [
+                "अंश (ऊपर की संख्या) बताता है कि कुल बराबर भागों में से कितने भाग लिए गए हैं।",
+                "हर (नीचे की संख्या) बताता है कि पूरी वस्तु को कुल कितने बराबर भागों में बाँटा गया है।",
+                "हर कभी भी शून्य (0) नहीं हो सकता क्योंकि शून्य से विभाजन अपरिभाषित है।",
+                "भिन्न बनने के लिए वस्तु के सभी टुकड़ों का आकार में बिल्कुल बराबर होना अनिवार्य है।"
+              ],
+              "example": "In 3/5, 3 is the numerator and 5 is the denominator. If a pizza is cut into 5 equal slices and you eat 3, you ate 3/5 of the pizza.",
+              "exampleHi": "3/5 में, 3 अंश है और 5 हर है। यदि एक पिज़्ज़ा को 5 बराबर टुकड़ों में काटा जाए और आप 3 टुकड़े खाएं, तो आपने 3/5 पिज़्ज़ा खाया।"
+            }
+          },
+          {
+            "topic_id": "types-of-fractions",
+            "topic_name": "Proper, Improper & Mixed Fractions (भिन्नों के प्रकार)",
+            "topic_nameHi": "उचित, विषम व मिश्र भिन्न",
+            "notes": {
+              "concept_intro": "Fractions are classified based on the relationship between numerator and denominator.",
+              "concept_introHi": "अंश और हर के पारस्परिक संबंध के आधार पर भिन्नों का वर्गीकरण किया जाता है।",
+              "key_points": [
+                "Proper Fraction: Numerator < Denominator. The value is strictly less than 1.",
+                "Improper Fraction: Numerator ≥ Denominator. The value is 1 or greater than 1.",
+                "Mixed Fraction: Combination of a whole number and a proper fraction.",
+                "Conversion rule: Improper fraction = (Whole × Denominator + Numerator) / Denominator."
+              ],
+              "key_pointsHi": [
+                "उचित भिन्न (Proper): अंश < हर। इसका मान सदैव 1 से कम होता है।",
+                "विषम भिन्न (Improper): अंश ≥ हर। इसका मान 1 या 1 से अधिक होता है।",
+                "मिश्र भिन्न (Mixed): पूर्ण संख्या और उचित भिन्न का मेल (जैसे 2 1/3)।",
+                "रूपांतरण नियम: मिश्र को विषम में बदलना: (पूर्ण × हर + अंश) / हर।"
+              ],
+              "example": "3/4 is Proper. 7/4 is Improper. Dividing 7 by 4 gives quotient 1 and remainder 3, so 7/4 = 1 3/4 (Mixed).",
+              "exampleHi": "3/4 उचित भिन्न है। 7/4 विषम भिन्न है। 7 को 4 से भाग देने पर 1 3/4 मिश्र भिन्न मिलती है।"
+            }
+          },
+          {
+            "topic_id": "equivalent-fractions",
+            "topic_name": "Equivalent Fractions & Simplest Form (तुल्य भिन्न)",
+            "topic_nameHi": "तुल्य भिन्न एवं सरलतम रूप",
+            "notes": {
+              "concept_intro": "Equivalent fractions look different but represent the exact same portion of the whole.",
+              "concept_introHi": "तुल्य भिन्न वे भिन्न होती हैं जो दिखने में भिन्न लगती हैं परंतु पूर्ण का समान मान निरूपित करती हैं।",
+              "key_points": [
+                "Multiply or divide both numerator and denominator by the exact same non-zero number to get equivalent fractions.",
+                "A fraction is in simplest form when HCF of numerator and denominator is 1.",
+                "Cross multiplication: a/b = c/d if and only if a × d = b × c."
+              ],
+              "key_pointsHi": [
+                "अंश और हर दोनों को एक ही अशून्य संख्या से गुणा या भाग करने पर तुल्य भिन्न प्राप्त होती है।",
+                "भिन्न सरलतम रूप में तब होती है जब अंश और हर का HCF 1 हो।",
+                "वज्र गुणन: a/b = c/d यदि और केवल यदि a × d = b × c।"
+              ],
+              "example": "2/3 = (2×4)/(3×4) = 8/12. Simplifying 8/12 by dividing both by 4 yields 2/3.",
+              "exampleHi": "2/3 = (2×4)/(3×4) = 8/12। 8/12 को 4 से भाग देकर सरल करने पर 2/3 प्राप्त होता है।"
+            }
+          },
+          {
+            "topic_id": "comparing-fractions",
+            "topic_name": "Comparing Fractions (भिन्नों की तुलना)",
+            "topic_nameHi": "भिन्नों में छोटे-बड़े की तुलना",
+            "notes": {
+              "concept_intro": "Comparing determines which fractional quantity is larger, smaller, or if they are equal.",
+              "concept_introHi": "तुलना से यह ज्ञात होता है कि कौन-सी भिन्न बड़ी है अथवा कौन-सी छोटी है।",
+              "key_points": [
+                "Like fractions (same denominator): The fraction with the larger numerator is greater (5/8 > 3/8).",
+                "Unlike fractions: Convert to like fractions by taking the LCM of the denominators, then compare numerators.",
+                "Same numerator: The fraction with the smaller denominator is larger (2/3 > 2/5)."
+              ],
+              "key_pointsHi": [
+                "समान हर: जिस भिन्न का अंश बड़ा होता है, वह भिन्न बड़ी होती है (5/8 > 3/8)।",
+                "असमान हर: हरों का ल.स.प. (LCM) लेकर समान हर में बदलें, फिर तुलना करें।",
+                "समान अंश: जिस भिन्न का हर छोटा होता है, वह भिन्न बड़ी होती है (2/3 > 2/5)।"
+              ],
+              "example": "To compare 3/5 and 2/3: LCM of 5 and 3 is 15. 3/5 = 9/15 and 2/3 = 10/15. Since 10/15 > 9/15, 2/3 > 3/5.",
+              "exampleHi": "3/5 और 2/3 की तुलना: LCM = 15। 3/5 = 9/15 तथा 2/3 = 10/15। अतः 2/3 > 3/5।"
+            }
+          },
+          {
+            "topic_id": "addition-subtraction-fractions",
+            "topic_name": "Addition & Subtraction of Fractions (भिन्न जोड़ व घटाव)",
+            "topic_nameHi": "भिन्नों का योग एवं घटाव",
+            "notes": {
+              "concept_intro": "Adding and subtracting fractions combines or finds differences between partitioned parts.",
+              "concept_introHi": "भिन्नों को जोड़कर कुल भाग या घटाकर अंतर ज्ञात किया जाता है।",
+              "key_points": [
+                "Like fractions: Add/subtract only the numerators: a/c ± b/c = (a ± b)/c.",
+                "NEVER add the denominators! (1/3 + 1/3 = 2/3, not 2/6).",
+                "Unlike fractions: Find LCM of denominators, convert to like fractions, then add or subtract."
+              ],
+              "key_pointsHi": [
+                "समान हर: केवल अंशों को जोड़ें/घटाएँ: a/c ± b/c = (a ± b)/c।",
+                "हरों को कभी न जोड़ें! (1/3 + 1/3 = 2/3 होता है, 2/6 नहीं)।",
+                "असमान हर: पहले LCM द्वारा हर समान बनाएँ, फिर अंशों को जोड़ें या घटाएँ।"
+              ],
+              "example": "1/4 + 1/2: LCM of 4 and 2 is 4. 1/2 = 2/4. Result = 1/4 + 2/4 = 3/4.",
+              "exampleHi": "1/4 + 1/2: LCM = 4। 1/2 = 2/4। उत्तर = 1/4 + 2/4 = 3/4।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "whole-numbers",
+        "chapter_number": 2,
+        "chapter_name": "Whole Numbers (पूर्ण संख्याएँ)",
+        "chapter_nameHi": "पूर्ण संख्याएँ (अध्याय 2)",
+        "syllabus_topics": [
+          {
+            "topic_id": "natural-vs-whole",
+            "topic_name": "Natural and Whole Numbers (प्राकृतिक व पूर्ण संख्याएँ)",
+            "topic_nameHi": "प्राकृतिक एवं पूर्ण संख्याओं की समझ",
+            "notes": {
+              "concept_intro": "Counting numbers form the foundation of arithmetic. Whole numbers include zero with counting numbers.",
+              "concept_introHi": "गिनती की संख्याएँ अंकगणित की आधारशिला हैं। शून्य को शामिल करने पर पूर्ण संख्याएँ बनती हैं।",
+              "key_points": [
+                "Natural Numbers: N = {1, 2, 3, 4, ...}. Smallest natural number is 1.",
+                "Whole Numbers: W = {0, 1, 2, 3, 4, ...}. Smallest whole number is 0.",
+                "0 is a whole number but not a natural number.",
+                "Successor is n + 1; Predecessor is n - 1. 0 has no predecessor in whole numbers."
+              ],
+              "key_pointsHi": [
+                "प्राकृतिक संख्याएँ: N = {1, 2, 3, ...}। सबसे छोटी प्राकृतिक संख्या 1 है।",
+                "पूर्ण संख्याएँ: W = {0, 1, 2, ...}। सबसे छोटी पूर्ण संख्या 0 है।",
+                "0 पूर्ण संख्या है किंतु प्राकृतिक संख्या नहीं है।",
+                "परवर्ती n + 1 है; पूर्ववर्ती n - 1 है। पूर्ण संख्याओं में 0 का कोई पूर्ववर्ती नहीं होता।"
+              ],
+              "example": "Predecessor of 1000 is 999. Successor of 199999 is 200000.",
+              "exampleHi": "1000 का पूर्ववर्ती 999 है। 199999 का परवर्ती 200000 है।"
+            }
+          },
+          {
+            "topic_id": "properties-whole-numbers",
+            "topic_name": "Properties of Whole Numbers (पूर्ण संख्याओं के गुणधर्म)",
+            "topic_nameHi": "गुणधर्म: संवृत, क्रमविनिमेय, साहचर्य व वितरण",
+            "notes": {
+              "concept_intro": "Fundamental mathematical properties simplify calculations and reveal structural patterns.",
+              "concept_introHi": "गुणधर्म गणना को सरल बनाते हैं और गणितीय नियमों को स्पष्ट करते हैं।",
+              "key_points": [
+                "Closure: Sum and product of two whole numbers are always whole numbers.",
+                "Commutative: a + b = b + a and a × b = b × a.",
+                "Associative: (a + b) + c = a + (b + c) and (a × b) × c = a × (b × c).",
+                "Distributive: a × (b + c) = (a × b) + (a × c).",
+                "Identity: 0 is additive identity (a + 0 = a); 1 is multiplicative identity (a × 1 = a)."
+              ],
+              "key_pointsHi": [
+                "संवृत: पूर्ण संख्याओं का योग और गुणन सदैव पूर्ण संख्या होता है।",
+                "क्रमविनिमेय: a + b = b + a तथा a × b = b × a।",
+                "साहचर्य: (a + b) + c = a + (b + c)।",
+                "वितरण: a × (b + c) = (a × b) + (a × c)।",
+                "तत्समक: 0 योज्य तत्समक है; 1 गुणन तत्समक है।"
+              ],
+              "example": "Solve using distributivity: 12 × 35 = 12 × (30 + 5) = 360 + 60 = 420.",
+              "exampleHi": "वितरण नियम से: 12 × 35 = 12 × (30 + 5) = 360 + 60 = 420।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "integers",
+        "chapter_number": 6,
+        "chapter_name": "Integers (पूर्णांक)",
+        "chapter_nameHi": "पूर्णांक (अध्याय 6)",
+        "syllabus_topics": [
+          {
+            "topic_id": "positive-negative-integers",
+            "topic_name": "Introduction to Integers & Number Line (पूर्णांकों का परिचय)",
+            "topic_nameHi": "पूर्णांक एवं संख्या रेखा",
+            "notes": {
+              "concept_intro": "Integers extend whole numbers to represent opposite directions, debts, and below-zero quantities.",
+              "concept_introHi": "विपरीत दिशाओं, ऋण, और शून्य से कम मानों को दर्शाने के लिए पूर्णांकों का उपयोग किया जाता है।",
+              "key_points": [
+                "Integers include negative numbers, zero, and positive numbers: {..., -3, -2, -1, 0, 1, 2, 3, ...}.",
+                "0 is neither positive nor negative.",
+                "On the number line: Right of 0 is positive (+); Left of 0 is negative (-).",
+                "Numbers increase moving right and decrease moving left (-5 < -2)."
+              ],
+              "key_pointsHi": [
+                "पूर्णांकों में ऋणात्मक संख्याएँ, शून्य और धनात्मक संख्याएँ शामिल हैं।",
+                "0 न तो धनात्मक है और न ही ऋणात्मक।",
+                "संख्या रेखा पर 0 के दाएँ धनात्मक (+) और बाएँ ऋणात्मक (-) संख्याएँ होती हैं।",
+                "दाएँ जाने पर मान बढ़ता है, बाएँ जाने पर घटता है (-5 < -2)।"
+              ],
+              "example": "Temperature 5°C below zero is -5°C. Deposit of ₹500 is +500; withdrawal is -500.",
+              "exampleHi": "शून्य से 5°C कम तापमान -5°C है। ₹500 जमा करना +500 तथा निकालना -500 है।"
+            }
+          },
+          {
+            "topic_id": "addition-subtraction-integers",
+            "topic_name": "Addition and Subtraction of Integers (पूर्णांक संक्रियाएँ)",
+            "topic_nameHi": "पूर्णांकों का जोड़ व घटाव नियम",
+            "notes": {
+              "concept_intro": "Adding and subtracting integers follows directional sign rules on the number line.",
+              "concept_introHi": "पूर्णांकों का जोड़ और घटाव संख्या रेखा पर दिशा नियमों के अनुसार किया जाता है।",
+              "key_points": [
+                "Same sign: Add absolute values and keep the sign: (-3) + (-5) = -8.",
+                "Different signs: Subtract smaller absolute value from larger, keep sign of larger: (-8) + (+5) = -3.",
+                "Additive inverse of a is -a (a + (-a) = 0).",
+                "Subtracting an integer means adding its additive inverse: a - b = a + (-b)."
+              ],
+              "key_pointsHi": [
+                "समान चिन्ह: संख्याओं को जोड़ें और वही चिन्ह लगाएँ: (-3) + (-5) = -8।",
+                "विपरीत चिन्ह: बड़े में से छोटा घटाएँ और बड़े का चिन्ह लगाएँ: (-8) + (+5) = -3।",
+                "a का योज्य प्रतिलोम -a होता है (a + (-a) = 0)।",
+                "घटाने का अर्थ है योज्य प्रतिलोम जोड़ना: a - b = a + (-b)।"
+              ],
+              "example": "Solve (-4) - (-7) = (-4) + (+7) = +3.",
+              "exampleHi": "हल करें: (-4) - (-7) = (-4) + (+7) = +3।"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "chapters": [
+      {
+        "chapter_id": "rational-numbers",
+        "chapter_number": 9,
+        "chapter_name": "Rational Numbers (परिमेय संख्याएँ)",
+        "chapter_nameHi": "परिमेय संख्याएँ (अध्याय 9)",
+        "syllabus_topics": [
+          {
+            "topic_id": "rational-intro",
+            "topic_name": "Definition & Standard Form (परिमेय संख्याओं की परिभाषा)",
+            "topic_nameHi": "परिमेय संख्याएँ एवं मानक रूप",
+            "notes": {
+              "concept_intro": "A rational number is any number that can be expressed as a quotient of two integers.",
+              "concept_introHi": "परिमेय संख्या वह संख्या है जिसे दो पूर्णांकों के अनुपात (p/q) के रूप में व्यक्त किया जा सके।",
+              "key_points": [
+                "Form: p/q where p and q are integers and q ≠ 0.",
+                "Includes all integers, fractions, and terminating/repeating decimals.",
+                "Standard Form: Denominator q is strictly positive, and HCF(|p|, q) = 1.",
+                "Positive rational numbers have numerator and denominator of the same sign."
+              ],
+              "key_pointsHi": [
+                "रूप: p/q जहाँ p और q पूर्णांक हैं तथा q ≠ 0 है।",
+                "इसमें सभी पूर्णांक, भिन्न और दशमलव शामिल होते हैं।",
+                "मानक रूप: हर q धनात्मक हो तथा p और q का HCF 1 हो।",
+                "धनात्मक परिमेय संख्याओं के अंश और हर दोनों समान चिन्ह वाले होते हैं।"
+              ],
+              "example": "-3/5 is in standard form. 6/(-10) converted to standard form is -3/5.",
+              "exampleHi": "-3/5 मानक रूप में है। 6/(-10) को मानक रूप में बदलने पर -3/5 प्राप्त होता है।"
+            }
+          },
+          {
+            "topic_id": "rational-operations",
+            "topic_name": "Operations on Rational Numbers (परिमेय संख्याओं पर संक्रियाएँ)",
+            "topic_nameHi": "योग, व्यवकलन, गुणन व भाग",
+            "notes": {
+              "concept_intro": "Operations on rational numbers generalize the arithmetic of fractions and integers.",
+              "concept_introHi": "परिमेय संख्याओं पर संक्रियाएँ भिन्न और पूर्णांकों के नियमों का संयुक्त रूप हैं।",
+              "key_points": [
+                "Addition/Subtraction: Find common denominator (LCM) then add/subtract numerators.",
+                "Multiplication: (p1/q1) × (p2/q2) = (p1 × p2) / (q1 × q2).",
+                "Reciprocal: The reciprocal (multiplicative inverse) of a/b is b/a (a ≠ 0, b ≠ 0).",
+                "Division: (a/b) ÷ (c/d) = (a/b) × (d/c)."
+              ],
+              "key_pointsHi": [
+                "जोड़/घटाव: ल.स.प. (LCM) द्वारा हर समान बनाएँ, फिर अंश जोड़ें या घटाएँ।",
+                "गुणा: अंश को अंश से तथा हर को हर से गुणा करें: (a×c)/(b×d)।",
+                "व्युत्क्रम (गुणात्मक प्रतिलोम): a/b का व्युत्क्रम b/a होता है।",
+                "भाग: पहली संख्या को दूसरी संख्या के व्युत्क्रम से गुणा करें: (a/b) × (d/c)।"
+              ],
+              "example": "(-3/4) ÷ (2/3) = (-3/4) × (3/2) = -9/8.",
+              "exampleHi": "(-3/4) ÷ (2/3) = (-3/4) × (3/2) = -9/8।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "exponents-powers",
+        "chapter_number": 13,
+        "chapter_name": "Exponents and Powers (घातांक और घात)",
+        "chapter_nameHi": "घातांक और घात (अध्याय 13)",
+        "syllabus_topics": [
+          {
+            "topic_id": "laws-of-exponents",
+            "topic_name": "Laws of Exponents (घातांकों के नियम)",
+            "topic_nameHi": "घातांक के प्रमुख नियम",
+            "notes": {
+              "concept_intro": "Exponents provide a compact notation for expressing repeated multiplication of the same factor.",
+              "concept_introHi": "एक ही संख्या के बार-बार गुणन को संक्षिप्त रूप में दर्शाने के लिए घातांक का प्रयोग होता है।",
+              "key_points": [
+                "Base and Exponent: In a^m, a is base, m is exponent (power).",
+                "Product Rule: a^m × a^n = a^(m + n).",
+                "Quotient Rule: a^m ÷ a^n = a^(m - n) (where m > n and a ≠ 0).",
+                "Power of a Power: (a^m)^n = a^(m × n).",
+                "Zero Exponent: a^0 = 1 for any non-zero number a."
+              ],
+              "key_pointsHi": [
+                "आधार व घातांक: a^m में a आधार है और m घातांक है।",
+                "गुणन नियम: a^m × a^n = a^(m + n)।",
+                "भाग नियम: a^m ÷ a^n = a^(m - n)।",
+                "घात की घात: (a^m)^n = a^(m × n)।",
+                "शून्य घातांक: किसी भी अशून्य संख्या के लिए a^0 = 1।"
+              ],
+              "example": "Simplify: 2^3 × 2^4 = 2^(3+4) = 2^7 = 128. Also (3^2)^3 = 3^(2×3) = 3^6 = 729.",
+              "exampleHi": "सरल करें: 2^3 × 2^4 = 2^(3+4) = 2^7 = 128। तथा (3^2)^3 = 3^6 = 729।"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "chapters": [
+      {
+        "chapter_id": "linear-equations",
+        "chapter_number": 2,
+        "chapter_name": "Linear Equations in One Variable (एक चर वाले रैखिक समीकरण)",
+        "chapter_nameHi": "एक चर वाले रैखिक समीकरण (अध्याय 2)",
+        "syllabus_topics": [
+          {
+            "topic_id": "solving-linear-equations",
+            "topic_name": "Solving Equations with Transposition (समीकरण हल करने की विधियाँ)",
+            "topic_nameHi": "पक्षांतरण विधि द्वारा समीकरण हल करना",
+            "notes": {
+              "concept_intro": "An algebraic equation is an equality involving variables whose highest power is 1.",
+              "concept_introHi": "रैखिक समीकरण वह समिका है जिसमें चर की अधिकतम घात 1 होती है।",
+              "key_points": [
+                "Standard Form: ax + b = c (where a ≠ 0).",
+                "Balance Method: You can add, subtract, multiply, or divide both sides by the same non-zero quantity.",
+                "Transposition Rule: Moving a term across the '=' sign inverts its operation (+ becomes -, × becomes ÷).",
+                "Check solution by substituting root back into the original equation."
+              ],
+              "key_pointsHi": [
+                "मानक रूप: ax + b = c (जहाँ a ≠ 0)।",
+                "संतुलन नियम: दोनों पक्षों में समान संख्या जोड़ी, घटाई, गुणा या भाग की जा सकती है।",
+                "पक्षांतरण नियम: '=' के दूसरी ओर ले जाने पर चिन्ह बदल जाता है (+ बनता है -, × बनता है ÷)।",
+                "उत्तर की जाँच मूल समीकरण में मान रखकर करें।"
+              ],
+              "example": "Solve 2x + 7 = 15: Transpose 7: 2x = 15 - 7 = 8. Divide by 2: x = 8 / 2 = 4.",
+              "exampleHi": "हल करें 2x + 7 = 15: पक्षांतरण करें: 2x = 15 - 7 = 8। अतः x = 8 / 2 = 4।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "algebraic-identities",
+        "chapter_number": 9,
+        "chapter_name": "Algebraic Expressions & Identities (बीजीय व्यंजक एवं सर्वसमिकाएँ)",
+        "chapter_nameHi": "बीजीय सर्वसमिकाएँ (अध्याय 9)",
+        "syllabus_topics": [
+          {
+            "topic_id": "standard-identities",
+            "topic_name": "Standard Identities (मानक बीजीय सर्वसमिकाएँ)",
+            "topic_nameHi": "प्रमुख सर्वसमिकाएँ एवं उपयोग",
+            "notes": {
+              "concept_intro": "An identity is an equality true for all values of the variables involved.",
+              "concept_introHi": "सर्वसमिका वह समिका है जो चर के प्रत्येक मान के लिए सत्य होती है।",
+              "key_points": [
+                "Identity I: (a + b)^2 = a^2 + 2ab + b^2.",
+                "Identity II: (a - b)^2 = a^2 - 2ab + b^2.",
+                "Identity III: (a + b)(a - b) = a^2 - b^2.",
+                "Identity IV: (x + a)(x + b) = x^2 + (a + b)x + ab."
+              ],
+              "key_pointsHi": [
+                "सर्वसमिका I: (a + b)^2 = a^2 + 2ab + b^2।",
+                "सर्वसमिका II: (a - b)^2 = a^2 - 2ab + b^2।",
+                "सर्वसमिका III: (a + b)(a - b) = a^2 - b^2।",
+                "सर्वसमिका IV: (x + a)(x + b) = x^2 + (a + b)x + ab।"
+              ],
+              "example": "Expand (2x + 3)^2: Using (a+b)^2 = (2x)^2 + 2(2x)(3) + 3^2 = 4x^2 + 12x + 9.",
+              "exampleHi": "(2x + 3)^2 का विस्तार: (2x)^2 + 2(2x)(3) + 3^2 = 4x^2 + 12x + 9।"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "class": 9,
+    "chapters": [
+      {
+        "chapter_id": "number-systems",
+        "chapter_number": 1,
+        "chapter_name": "Number Systems (संख्या पद्धति)",
+        "chapter_nameHi": "संख्या पद्धति (अध्याय 1)",
+        "syllabus_topics": [
+          {
+            "topic_id": "real-number-types",
+            "topic_name": "Irrational Numbers & Real Number Line (अपरिमेय संख्याएँ)",
+            "topic_nameHi": "अपरिमेय संख्याएँ एवं वास्तविक संख्याएँ",
+            "notes": {
+              "concept_intro": "Real numbers encompass both rational and irrational numbers, completely filling the continuous number line.",
+              "concept_introHi": "वास्तविक संख्याओं में परिमेय और अपरिमेय दोनों संख्याएँ शामिल हैं, जो संख्या रेखा को पूर्ण करती हैं।",
+              "key_points": [
+                "Irrational Number: Cannot be written as p/q. Its decimal expansion is non-terminating and non-recurring (e.g. √2, √3, π).",
+                "Real Numbers: The set of all rationals and irrationals combined (R = Q ∪ Q').",
+                "Every real number is represented by a unique point on the number line.",
+                "Rationalizing denominator: Multiply numerator and denominator by conjugate."
+              ],
+              "key_pointsHi": [
+                "अपरिमेय संख्या: जिसे p/q रूप में नहीं लिखा जा सकता। इसका दशमलव प्रसार अनवresourceानी अनावर्ती (non-terminating non-recurring) होता है (जैसे √2, π)।",
+                "वास्तविक संख्याएँ: परिमेय और अपरिमेय संख्याओं का संपूर्ण संग्रह।",
+                "प्रत्येक वास्तविक संख्या का संख्या रेखा पर एक अद्वितीय बिंदु होता है।",
+                "हर का परिमेयकरण: हर के संयुग्मी (conjugate) से ऊपर-नीचे गुणा करना।"
+              ],
+              "example": "Rationalize 1/(√7 - √6): Multiply by (√7 + √6): (√7 + √6) / (7 - 6) = √7 + √6.",
+              "exampleHi": "1/(√7 - √6) का परिमेयकरण: (√7 + √6) से गुणा करने पर √7 + √6 प्राप्त होता है।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "polynomials-class9",
+        "chapter_number": 2,
+        "chapter_name": "Polynomials (बहुपद)",
+        "chapter_nameHi": "बहुपद (अध्याय 2)",
+        "syllabus_topics": [
+          {
+            "topic_id": "remainder-factor-theorem",
+            "topic_name": "Remainder & Factor Theorems (शेषफल एवं गुणनखंड प्रमेय)",
+            "topic_nameHi": "शेषफल और गुणनखंड प्रमेय",
+            "notes": {
+              "concept_intro": "Theorems enabling factorisation and evaluation of polynomials without long division.",
+              "concept_introHi": "बिना लंबी भाग प्रक्रिया के बहुपदों का गुणनखंडन और शेषफल ज्ञात करने के नियम।",
+              "key_points": [
+                "Remainder Theorem: If polynomial p(x) is divided by (x - a), the remainder is p(a).",
+                "Factor Theorem: (x - a) is a factor of p(x) if and only if p(a) = 0.",
+                "Degree of polynomial: Highest exponent of variable x.",
+                "Zeroes of polynomial: Values of x for which p(x) = 0."
+              ],
+              "key_pointsHi": [
+                "शेषफल प्रमेय: यदि बहुपद p(x) को (x - a) से भाग दिया जाए, तो शेषफल p(a) होता है।",
+                "गुणनखंड प्रमेय: (x - a), p(x) का गुणनखंड होगा यदि और केवल यदि p(a) = 0 हो।",
+                "बहुपद की घात: चर x की उच्चतम घात।",
+                "बहुपद के शून्यक: x के वे मान जिनके लिए p(x) = 0 हो जाए।"
+              ],
+              "example": "Find remainder when p(x) = x^3 - 2x^2 + x + 1 is divided by (x - 1): Remainder = p(1) = 1^3 - 2(1)^2 + 1 + 1 = 1.",
+              "exampleHi": "p(x) = x^3 - 2x^2 + x + 1 को (x - 1) से भाग देने पर शेषफल: p(1) = 1 - 2 + 1 + 1 = 1।"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "class": 10,
+    "chapters": [
+      {
+        "chapter_id": "real-numbers-class10",
+        "chapter_number": 1,
+        "chapter_name": "Real Numbers (वास्तविक संख्याएँ)",
+        "chapter_nameHi": "वास्तविक संख्याएँ (अध्याय 1)",
+        "syllabus_topics": [
+          {
+            "topic_id": "fundamental-theorem-arithmetic",
+            "topic_name": "Fundamental Theorem of Arithmetic (अंकगणित की आधारभूत प्रमेय)",
+            "topic_nameHi": "अंकगणित की आधारभूत प्रमेय एवं अपरिमेयता सिद्ध करना",
+            "notes": {
+              "concept_intro": "Every composite number can be uniquely factored into prime factors, establishing arithmetic foundation.",
+              "concept_introHi": "प्रत्येक भाज्य संख्या को अभाज्य संख्याओं के गुणनफल के रूप में अद्वितीय रूप से व्यक्त किया जा सकता है।",
+              "key_points": [
+                "Every composite number can be expressed (factorised) as a product of primes uniquely, apart from order.",
+                "Formula relating HCF and LCM for two positive integers a and b: HCF(a, b) × LCM(a, b) = a × b.",
+                "Proof by contradiction for irrationality: Proving √2, √3, √5 are irrational numbers.",
+                "Decimal theorem: p/q has terminating decimal expansion iff prime factorisation of q is 2^n × 5^m."
+              ],
+              "key_pointsHi": [
+                "प्रत्येक भाज्य संख्या को अभाज्यों के एक गुणनफल के रूप में गुणनखंडित किया जा सकता है।",
+                "दो संख्याओं के HCF और LCM में संबंध: HCF(a, b) × LCM(a, b) = a × b।",
+                "विरोधाभास विधि (Contradiction) द्वारा सिद्ध करना कि √2, √3 अपरिमेय संख्याएँ हैं।",
+                "शांत दशमलव: p/q शांत दशमलव होगा यदि हर q का अभाज्य गुणनखंड 2^n × 5^m रूप का हो।"
+              ],
+              "example": "Given HCF(306, 657) = 9. Find LCM: LCM = (306 × 657) / 9 = 34 × 657 = 22338.",
+              "exampleHi": "यदि HCF(306, 657) = 9 हो, तो LCM = (306 × 657) / 9 = 22338।"
+            }
+          }
+        ]
+      },
+      {
+        "chapter_id": "quadratic-equations",
+        "chapter_number": 4,
+        "chapter_name": "Quadratic Equations (द्विघात समीकरण)",
+        "chapter_nameHi": "द्विघात समीकरण (अध्याय 4)",
+        "syllabus_topics": [
+          {
+            "topic_id": "quadratic-formula-nature-roots",
+            "topic_name": "Quadratic Formula & Nature of Roots (द्विघाती सूत्र एवं मूलों की प्रकृति)",
+            "topic_nameHi": "श्रीधराचार्य द्विघाती सूत्र व विविक्तकर (Discriminant)",
+            "notes": {
+              "concept_intro": "Quadratic equations model parabolic trajectories, areas, and second-degree relationships.",
+              "concept_introHi": "द्विघात समीकरण चर की अधिकतम घात 2 वाले समीकरण होते हैं।",
+              "key_points": [
+                "Standard Form: ax^2 + bx + c = 0 (where a ≠ 0).",
+                "Quadratic Formula: x = [-b ± √(b^2 - 4ac)] / (2a).",
+                "Discriminant D = b^2 - 4ac determines nature of roots:",
+                "If D > 0: Two distinct real roots; If D = 0: Two equal real roots; If D < 0: No real roots."
+              ],
+              "key_pointsHi": [
+                "मानक रूप: ax^2 + bx + c = 0 (जहाँ a ≠ 0)।",
+                "द्विघाती सूत्र: x = [-b ± √(b^2 - 4ac)] / (2a)।",
+                "विविक्तकर D = b^2 - 4ac मूलों की प्रकृति तय करता है:",
+                "यदि D > 0: दो भिन्न वास्तविक मूल; यदि D = 0: दो बराबर वास्तविक मूल; यदि D < 0: कोई वास्तविक मूल नहीं।"
+              ],
+              "example": "For 2x^2 - 4x + 3 = 0: D = (-4)^2 - 4(2)(3) = 16 - 24 = -8 < 0. Hence, it has no real roots.",
+              "exampleHi": "2x^2 - 4x + 3 = 0 के लिए: D = 16 - 24 = -8 < 0। अतः कोई वास्तविक मूल नहीं है।"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

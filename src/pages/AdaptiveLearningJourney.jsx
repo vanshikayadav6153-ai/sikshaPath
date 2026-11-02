@@ -14,6 +14,7 @@ import { useApp } from '../context/AppContext';
 import questions from '../data/questions';
 import fractionsLesson, { lessonsByTopic } from '../data/lessons';
 import FractionVisualizer from '../components/FractionVisualizer';
+import StudyNotesViewer from '../components/StudyNotesViewer';
 import { getRecommendation } from '../engine/recommendationEngine';
 import subjects from '../data/subjects';
 
@@ -537,6 +538,14 @@ export default function AdaptiveLearningJourney() {
             <div className="lesson-nav-tabs">
               <button
                 type="button"
+                className={`lesson-tab ${activeLessonTab === 'notes' ? 'active' : ''}`}
+                onClick={() => setActiveLessonTab('notes')}
+              >
+                📚 {language === 'hi' ? 'अध्याय नोट्स (Class 6-10)' : 'Study Notes (Class 6-10)'}
+              </button>
+
+              <button
+                type="button"
                 className={`lesson-tab ${activeLessonTab === 'recap' ? 'active' : ''}`}
                 onClick={() => setActiveLessonTab('recap')}
               >
@@ -568,6 +577,21 @@ export default function AdaptiveLearningJourney() {
 
             {/* Lesson Tab Content */}
             <div className="lesson-content-card">
+              {/* Study Notes Tab */}
+              {activeLessonTab === 'notes' && (
+                <div className="notes-tab-wrapper">
+                  <StudyNotesViewer
+                    initialClass={currentStudent?.class || 6}
+                    onStartQuiz={(selectedTopic, nextStage) => {
+                      setActiveTopicId(selectedTopic);
+                      setStage(nextStage || 'quick-check');
+                      // Scroll to top of journey
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  />
+                </div>
+              )}
+
               {/* Foundation Recap */}
               {activeLessonTab === 'recap' && currentLesson.foundationRecap && (
                 <div className="recap-content">
